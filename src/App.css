@@ -1,38 +1,204 @@
-.App {
-  text-align: center;
+
+:root {
+  --col-prim: #16697a;
+  --col-light: #489fb5;
+  --col-light-2: #82c8cc;
+  --col-sec: #ffa62b;
+  --col-ter: #ede7e3;
+  --col-grey: #efefef;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  padding-top: 60px;
   min-height: 100vh;
+}
+
+
+/* Navbar Styles */
+.navbar {
+  background-color: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-brand {
+  color: var(--col-light)!important;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+.navbar-brand:hover {
+  color: var(--col-light)!important;
+}
+
+.navbar-brand label {
+  margin-bottom: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif!important;
+  font-family: 'Montserrat', sans-serif;  
+  font-weight: 500;
+}
+.navbar-brand label:hover{
+  cursor: pointer;
+}
+
+.nav-link {
+  color: var(--col-light)!important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: bold!important;
+}
+
+.nav-link:hover {
+  color: var(--col-light)!important;
+}
+
+/* Login page */
+.full-back {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-back {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 55%;
+  filter: blur(5px);
+  z-index: 1;
+}
+
+.login-overlay {
+  background-color: rgba(93, 93, 93, 0.5);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-complete {
+  position: relative;
+  top: -40px;
+  width: 780px;
+  height: 300px;
+  background: #fff;
+  display: flex;
+  margin: auto;
+}
+
+.login-info {
+  width: 280px;
+  height: inherit;
+  background-color: var(--col-light);
   color: white;
+  padding: 30px;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.login-info h4 {
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.login-info ul {
+  list-style: "- ";
+  padding-left: 10px;
+  margin-top: 30px;
+}
+
+.login-info ul li {
+  margin: 20px 0;
+}
+
+.login-form {
+  margin: 0;
+  padding: 30px;
+  width: 500px;
+  height: inherit;
+}
+
+.login-form h4 {
+  width: 100%;
+  text-align: center;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;;
+}
+
+.login-form input[type='text'], .login-form input[type='password'] {
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  transition: box-shadow 1s;
+}
+
+.login-form input[type='text']:focus, .login-form input[type='password']:focus {
+  outline: none;
+  box-shadow: 0 1px 0 0 var(--col-light-2);
+  transition: box-shadow 1s;
+}
+
+.forget-div {
+  text-align: end;
+  padding: 0;
+}
+
+.forgot-link {
+  font-size: 12px;
+  color: #000;
+}
+.forgot-link:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.login-submit-button {
+  width: 100%;
+  background-color: var(--col-light);
+  border: 1px solid #707070;
+  color: #fff;
+  padding: 5px;
+  border-radius: 7px;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+}
+.login-submit-button:focus {
+  border: 1px solid #707070;
+}
+
+/* Media Queries */
+@media (max-width: 991.98px) {
+
+  /* Login Page */
+  .login-complete {
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .login-info ul {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  /* Login Page */
+  .login-overlay {
+    padding-top: 20px;
+  }
+
+  .login-complete {
+    width: 100%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+
+  /* Login Page */
+  .login-form label {
+    padding: 0;
   }
 }
