@@ -62,6 +62,7 @@ class Login extends Component {
                                                 name = 'name'
                                                 onChange = {this.handleChange}
                                                 className = 'col-12 col-sm-7 offset-sm-1'
+                                                placeholder= 'Enter Username'
                                                 required
                                             />
                                         </div>
@@ -74,6 +75,7 @@ class Login extends Component {
                                                 name = 'password'
                                                 onChange = {this.handleChange}
                                                 className = 'col-sm-7 col-12 offset-sm-1'
+                                                placeholder = 'Enter Password'
                                                 required
                                             />
                                         </div>
