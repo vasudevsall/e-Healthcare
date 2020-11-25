@@ -28,9 +28,7 @@ class UserService {
             data: data
         };
 
-        axios(config).then(function(response){
-            console.log(response);
-        });
+        return axios(config);
 
     }
 }

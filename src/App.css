@@ -196,6 +196,14 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;;
 }
 
+.login-form .login-error {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  line-height: 0.8;
+}
+
 .login-form input[type='text'], .login-form input[type='password'] {
   border: none;
   border-bottom: 2px solid black;

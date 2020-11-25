@@ -9,7 +9,8 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errMess: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +33,18 @@ class Login extends Component {
             username: '',
             password: ''
         });
-        UserService.loginUser(this.state.username, this.state.password);
+        UserService.loginUser(this.state.username, this.state.password)
+            .then((resp) => {
+                alert("Authenticated");
+                this.setState({
+                    errMess: ''
+                });
+            }).catch((err) => {
+                this.setState({
+                    errMess: err.response.data.Error
+                });
+            });
+        
     }
 
     render() {
@@ -53,7 +65,10 @@ class Login extends Component {
                                 </ul>
                             </div>
                             <div className = 'login-form'>
-                                <h4 className='mb-1 mb-md-4'>Sign In</h4>
+                                <h4 className='mb-1 mb-md-2'>Sign In</h4>
+                                <div className = 'container'>
+                                    <label className = 'login-error' style={{color: 'red'}}>{this.state.errMess}</label>
+                                </div>
                                 <form onSubmit={this.handleSubmit}>
                                     <div className = 'container'>
                                         <div className='row mb-4'>
