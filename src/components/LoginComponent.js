@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import UserService from '../services/UserService';
 
 class Login extends Component {
 
@@ -7,7 +8,7 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            name: '',
+            username: '',
             password: ''
         }
 
@@ -28,9 +29,10 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({
-            name: '',
+            username: '',
             password: ''
         });
+        UserService.loginUser(this.state.username, this.state.password);
     }
 
     render() {
@@ -59,7 +61,7 @@ class Login extends Component {
                                             <input value = {this.state.name}
                                                 type='text'
                                                 id = 'login-name'
-                                                name = 'name'
+                                                name = 'username'
                                                 onChange = {this.handleChange}
                                                 className = 'col-12 col-sm-7 offset-sm-1'
                                                 placeholder= 'Enter Username'
