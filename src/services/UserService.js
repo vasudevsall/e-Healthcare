@@ -4,6 +4,8 @@ import {REQ_URL} from '../constants/Constrants';
 
 const USER_REG_URL = REQ_URL + "register";
 const USER_LOGIN_URL = REQ_URL + "login";
+const USER_VERIFICAION_URL = REQ_URL + "login-verify";
+const USER_LOGOUT = REQ_URL + "logout";
 
 class UserService {
 
@@ -30,6 +32,25 @@ class UserService {
 
         return axios(config);
 
+    }
+
+    verifyLogin() {
+        const config = {
+            method: 'get',
+            url: USER_VERIFICAION_URL,
+            withCredentials: true
+        }
+        return axios(config);
+    }
+
+    logoutUser() {
+        const config = {
+            method: 'get',
+            url: USER_LOGOUT,
+            withCredentials: true
+        }
+
+        return axios(config);
     }
 }
 

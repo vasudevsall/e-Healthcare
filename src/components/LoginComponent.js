@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import UserService from '../services/UserService';
 
 class Login extends Component {
@@ -35,10 +35,12 @@ class Login extends Component {
         });
         UserService.loginUser(this.state.username, this.state.password)
             .then((resp) => {
-                alert("Authenticated");
                 this.setState({
                     errMess: ''
                 });
+                this.props.toggleLogin(true);
+                this.props.setUserInfo(resp.data.username, resp.data.name, resp.data.phoneNumber);
+                this.props.history.push("/welcome");
             }).catch((err) => {
                 this.setState({
                     errMess: err.response.data.Error
@@ -123,4 +125,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
