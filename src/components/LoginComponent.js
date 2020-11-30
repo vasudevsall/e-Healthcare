@@ -40,7 +40,14 @@ class Login extends Component {
                 });
                 this.props.toggleLogin(true);
                 this.props.setUserInfo(resp.data.username, resp.data.name, resp.data.phoneNumber);
-                this.props.history.push("/welcome");
+                switch(resp.data.roles) {
+                    case "ROLE_USER":
+                        this.props.history.push("/welcome");
+                        break;
+                    
+                    default:
+                        this.props.history.push("/");
+                }
             }).catch((err) => {
                 this.setState({
                     errMess: err.response.data.Error

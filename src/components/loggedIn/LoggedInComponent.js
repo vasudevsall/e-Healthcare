@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import Header from './LoginHeaderComponent';
 import UserService from '../../services/UserService';
+import SideBar from './LoginSideBarComponent';
 
 class LoggedIn extends Component {
 
@@ -21,10 +22,16 @@ class LoggedIn extends Component {
         return(
             <>
                 <Header/>
-                <Switch>
-                    <Route path="/" component = {() => <></>}/>
-                    <Redirect to="/"/>
-                </Switch>  
+                <div className="wrapper">
+                    <SideBar/>
+
+                    <div id="content">
+                        <Switch>
+                            <Route path="/" component = {() => <></>}/>
+                            <Redirect to="/"/>
+                        </Switch>
+                    </div>
+                </div>
             </>
         );
     }

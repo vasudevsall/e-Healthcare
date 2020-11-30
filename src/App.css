@@ -11,7 +11,13 @@
 body {
   padding-top: 60px;
   min-height: 100vh;
+  height: 1px;
   background-color: var(--col-grey);
+}
+
+#root {
+  min-height: 100%;
+  height: 1px;
 }
 
 
@@ -20,6 +26,9 @@ body {
   background-color: var(--col-grey);
   padding-top: 0;
   padding-bottom: 0;
+}
+.login-nav{
+  background-color: var(--col-prim);
 }
 
 .navbar-brand {
@@ -30,6 +39,12 @@ body {
 }
 .navbar-brand:hover {
   color: var(--col-light)!important;
+}
+.login-nav .navbar-brand{
+  color: var(--col-grey)!important;
+}
+.login-nav .navbar-brand:hover{
+  color: var(--col-grey)!important;
 }
 
 .navbar-brand label {
@@ -51,6 +66,14 @@ body {
 
 .nav-link:hover {
   color: var(--col-light)!important;
+  cursor: pointer;
+}
+
+.login-nav .nav-link {
+  color: var(--col-grey)!important;
+}
+.login-nav .nav-link:hover {
+  color: var(--col-grey)!important;
 }
 
 /* Home Page */
@@ -283,6 +306,25 @@ body {
 .btn-mail {
   background-color: var(--col-light-2);
   color: var(--col-prim);
+}
+
+/* LoggedIn CSS */
+.wrapper {
+  min-height: 100%;
+  height: 1px;
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-height: 100%;
+  min-width: 250px;
+  max-width: 250px;
+  background-color: var(--col-prim);
+}
+
+#content {
+  width: 100%;
 }
 
 /* Support Classes */
