@@ -1,14 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class SideBar extends Component {
-
-    render() {
-        return(
-            <div id="sidebar">
-
-            </div>
-        );
-    }
+function SideBar(props) {
+    return(
+        <div id="sidebar" className='is-active'>
+            {props.children}
+        </div>
+    );
 }
 
 export default SideBar;

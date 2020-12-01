@@ -3,6 +3,7 @@ import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import Header from './LoginHeaderComponent';
 import UserService from '../../services/UserService';
 import SideBar from './LoginSideBarComponent';
+import Content from './LoggedInContentComponent';
 
 class LoggedIn extends Component {
 
@@ -23,11 +24,11 @@ class LoggedIn extends Component {
             <>
                 <Header/>
                 <div className="wrapper">
-                    <SideBar/>
+                    <SideBar></SideBar>
 
                     <div id="content">
                         <Switch>
-                            <Route path="/" component = {() => <></>}/>
+                            <Route path="/" component = {() => <Content/>}/>
                             <Redirect to="/"/>
                         </Switch>
                     </div>

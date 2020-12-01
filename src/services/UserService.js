@@ -6,6 +6,7 @@ const USER_REG_URL = REQ_URL + "register";
 const USER_LOGIN_URL = REQ_URL + "login";
 const USER_VERIFICAION_URL = REQ_URL + "login-verify";
 const USER_LOGOUT = REQ_URL + "logout";
+const USER_DETAILS = REQ_URL + "login-success";
 
 class UserService {
 
@@ -47,6 +48,16 @@ class UserService {
         const config = {
             method: 'get',
             url: USER_LOGOUT,
+            withCredentials: true
+        }
+
+        return axios(config);
+    }
+
+    getUserDetails() {
+        const config = {
+            method: 'get',
+            url: USER_DETAILS,
             withCredentials: true
         }
 
