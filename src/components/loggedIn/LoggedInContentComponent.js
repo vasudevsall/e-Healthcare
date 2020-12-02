@@ -1,22 +1,212 @@
 import React, {Component} from 'react';
+import AppointmentService from '../../services/AppointmentService';
+import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
+import UserService from '../../services/UserService';
+import {Link, withRouter} from 'react-router-dom';
+import {Table} from 'reactstrap';
+import classnames from 'classnames';
 
-class Content extends Component {
+class DashboardContent extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            upcomingAppointments: [],
+            ifUpcomingData: false,
+            activeTab: '1'
+        }
+        this.renderScheduleFunction = this.renderScheduleFunction.bind(this);
+        this.formatDate = this.formatDate.bind(this);
+        this.toggle = this.toggle.bind(this);
+    }
+
+    componentDidMount() {
+        AppointmentService.getUpcomingAppointments()
+        .then((resp) => {
+            this.setState({
+                upcomingAppointments: resp.data,
+                ifUpcomingData: true
+            })
+        }).catch((err) => {
+            UserService.logoutUser()
+                .then((resp) => {
+                    this.props.history.push("/login");
+                }).catch((error)=> {
+                    this.props.history.push("/login");
+                });
+        });
+    }
+
+    formatDate(date, noTime = true) {
+        let dt = date.split("T");
+        let ymd = dt[0].split("-");
+        let time = dt[1].split("+");
+        let t = time[0].split(".");
+        if(noTime)
+            return (ymd[2] + "-" + ymd[1] + "-" + ymd[0]);
+        return t[0];
+    }
+
+    renderScheduleFunction() {
+        if(!this.state.ifUpcomingData) {
+            return (<div className = 'full-flex-span'>
+                <span className = 'fa fa-spin fa-circle-o-notch'></span>
+            </div>);
+        }
+        else {
+            let count = 1;
+            const tableData = this.state.upcomingAppointments.map((appointment) => {
+                return(
+                    <tr key = {appointment.serial}>
+                        <td>{count++}</td>
+                        <td>{
+                            "Dr. " + appointment.doctor.firstName + "  " 
+                            + appointment.doctor.lastName
+                        }</td>
+                        <td>{this.formatDate(appointment.date)}</td>
+                        <td>{this.formatDate(appointment.date, false)}</td>
+                    </tr>
+                );
+            });
+            if(this.state.upcomingAppointments.length > 0) {
+                return(
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Doctor</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableData}
+                        </tbody>
+                    </Table>
+                );
+            } else {
+                return (
+                    <div className = 'full-flex-span'>
+                        <span>No scheduled appointments</span>
+                    </div>
+                )
+            }
+        }
+    }
+
+    toggle(tab) {
+        if(this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
 
     render() {
+        const renderSchedule =  this.renderScheduleFunction(); 
+                    
+
         return(
-            <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac massa sed odio auctor malesuada ut eu orci. Suspendisse eu enim lorem. Maecenas sodales tristique venenatis. Curabitur nec elit eleifend, consequat dui in, rutrum mi. Maecenas quis tristique metus, ultricies ultrices dolor. Sed porta rhoncus dolor, eu hendrerit felis malesuada non. Maecenas iaculis interdum est quis varius. Proin non accumsan libero, eget iaculis lectus. Nunc rhoncus nec elit molestie ultricies. Donec arcu orci, venenatis non dignissim sed, dapibus quis orci. Aenean mollis felis eget orci scelerisque, vitae scelerisque eros dignissim. Phasellus dolor purus, elementum quis condimentum ac, pulvinar eu enim. Quisque varius enim quis euismod auctor.
+            <>
+                <div className='fluid-container'>
+                    <div className='row mb-2'>
+                        <div className='col-12'>
+                            <h4>Dashboard</h4>
+                            <hr/>
+                        </div>
+                    </div>
 
-Suspendisse eget ex porttitor dui mattis tempus ut maximus metus. Praesent auctor pellentesque vehicula. Nam porttitor ac nisl et tincidunt. Pellentesque id faucibus risus. Cras non nisi nulla. Aenean in rutrum eros, ut aliquet felis. Aenean porta sollicitudin augue ut posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque auctor magna. Nunc rutrum mi a arcu commodo, pharetra commodo lacus maximus. Aliquam quis nisi arcu. Nulla arcu sapien, finibus in tristique eu, volutpat at neque. Donec ultricies lectus orci, nec blandit nunc fringilla vel. Aliquam sed risus nec velit tincidunt molestie ut vitae nunc.
+                    <div className='row mb-5'>
+                        <div className= 'col-md-8 col-12'>
+                            <div className = 'dash-card'>
+                                <div className = 'head'>
+                                    Quick Links
+                                </div>
+                                <div className = 'body'>
+                                    <Nav tabs>
+                                        <NavItem>
+                                            <NavLink
+                                                className={classnames({ active: this.state.activeTab === '1' })}
+                                                onClick={() => this.toggle('1')}
+                                            >
+                                                Appointments
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink
+                                                className={classnames({ active: this.state.activeTab === '2' })}
+                                                onClick={() => this.toggle('2')}
+                                            >
+                                                Lab
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink
+                                                className={classnames({ active: this.state.activeTab === '3' })}
+                                                onClick={() => this.toggle('3')}
+                                            >
+                                                Pharmacy
+                                            </NavLink>
+                                        </NavItem>
+                                    </Nav>
+                                    <TabContent activeTab={this.state.activeTab}>
+                                        <TabPane tabId="1">
+                                            <div className='fluid-container'>
+                                                <div className= 'row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to='/welcome/appointments/all'>
+                                                            <span className='fa fa-list-alt fa-lg'></span> See All Appointments
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to='/welcome/appointments/history'>
+                                                            <span className='fa fa-history fa-lg'></span> Previous Appointments
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                                <div className='row'>
+                                                    <div className='col-6'>
+                                                        <Link to='/welcome/appointments/schedule'>
+                                                            <span className='fa fa-calendar fa-lg'></span> Scheduled Appointments
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to='/welcome/online'>
+                                                            <span className='fa fa-wifi fa-lg'></span> Online Consultation
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </TabPane>
+                                        <TabPane tabId="2">
+                                            <h4>Tab 2</h4>
+                                        </TabPane>
+                                        <TabPane tabId="3">
+                                            <h4>Tab 3</h4>
+                                        </TabPane>
+                                    </TabContent>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-Quisque magna arcu, pellentesque ac elit pulvinar, sollicitudin volutpat massa. Etiam quis tortor eget augue porttitor dignissim. Morbi molestie hendrerit mi quis feugiat. Phasellus accumsan elementum tellus. Mauris egestas libero non odio tincidunt, sed consequat sem mattis. Suspendisse at elit ut felis laoreet lacinia eu vitae dui. Phasellus vitae dapibus nisl. Morbi blandit tristique consectetur. Etiam nisi eros, pellentesque vitae leo eget, ullamcorper elementum massa. Etiam vestibulum aliquam nunc. Pellentesque id enim volutpat, laoreet mi volutpat, suscipit nisi. Suspendisse elementum lectus sit amet semper interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in neque vehicula, eleifend est quis, dignissim nunc.
+                    <div className='row'>
+                        <div className= 'col-md-8 col-12'>
+                            <div className = 'dash-card'>
+                                <div className = 'head'>
+                                    Upcoming Appointments
+                                </div>
+                                <div className = 'body'>
+                                    {renderSchedule}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-Maecenas aliquam faucibus lacus venenatis cursus. Quisque purus tortor, tristique non pharetra vitae, vestibulum sit amet purus. Donec nisl magna, accumsan at gravida vitae, commodo a tellus. Proin placerat egestas ex, at tempus est accumsan ut. Nullam lobortis metus eros, at porttitor nulla condimentum vel. Aenean sed odio vel justo placerat dictum. Fusce vel nulla a diam consequat mattis egestas eu arcu. Ut convallis est id libero bibendum, in ornare arcu ornare. Nulla odio nibh, convallis ac aliquet non, sodales sed libero.
-
-Nulla eu viverra urna, eu egestas quam. Etiam quis nulla sit amet lorem lobortis iaculis ac iaculis ipsum. Aenean eget sem et nibh suscipit eleifend elementum vitae tortor. Nulla facilisi. Integer dui sem, pulvinar eget massa quis, laoreet dignissim purus. Fusce vel velit id enim fermentum eleifend. Proin a bibendum purus. Nunc sit amet facilisis felis. Cras metus mi, efficitur sed lorem suscipit, convallis consectetur ante. Aliquam vitae ultrices mi. Integer bibendum commodo odio, a finibus lorem pharetra vitae. Proin lacinia a ipsum vitae tempor. Integer dictum facilisis neque, nec gravida libero vehicula id. Aliquam gravida turpis id libero venenatis, a commodo erat tincidunt. Nullam sed metus eget neque imperdiet pellentesque.
-            </div>
+                </div>
+            </>
         );
     }
 }
 
-export default Content;
+export default withRouter(DashboardContent);

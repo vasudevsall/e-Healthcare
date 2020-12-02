@@ -1,6 +1,8 @@
 
 :root {
   --col-prim: #16697a;
+  --col-prim-2: #2c8498;
+  --col-ter-2: #4298a3;
   --col-light: #489fb5;
   --col-light-2: #82c8cc;
   --col-sec: #ffa62b;
@@ -375,11 +377,51 @@ body {
   transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 #sidebar.is-active{
-  min-width: 250px;
+  min-width: 300px;
 }
 
 #content {
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
+  padding: 30px 50px;
+}
+
+#content h4 {
+  color: var(--col-prim);
+}
+
+.dash-card {
+  width: 100%;
+  height: auto;
+  border: 1px solid #555555;
+}
+.dash-card .head {
+  width: 100%;
+  padding: 10px 20px;
+  height: 40px;
+  background-color: var(--col-prim-2);
+  color: var(--col-ter);
+  border-bottom: 1px solid #555555;
+}
+.dash-card .body {
+  height: 150px;
+  background-color: var(--col-grey);
+  overflow-y: auto;
+}
+
+.tab-pane {
+  padding: 15px;
+  font-size: 16px;
+}
+
+.tab-pane a {
+  color: var(--col-ter-2);
+}
+.tab-pane a:hover {
+  text-decoration: none;
+}
+.tab-pane a span {
+  color: rgba(0, 0, 0, 0.7)
 }
 
 /* Dropdown */
@@ -416,6 +458,17 @@ body {
 /* Support Classes */
 .width-100 {
   min-height: 10px;
+}
+
+.full-flex-span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-flex-span span {
+  font-size: 14px;
 }
 
 /* Media Queries */
@@ -513,7 +566,7 @@ body {
   }
   #sidebar {
     position: absolute;
-    min-width: 250px;
+    min-width: 300px;
   }
 
   /* Footer */

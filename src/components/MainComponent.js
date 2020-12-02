@@ -44,11 +44,7 @@ class Main extends Component {
                         <><Header/><Login toggleLogin = {this.toggleLoggedIn} setUserInfo = {this.setUserInfo}/></>
                     }/>
                     <Route path = "/welcome" component = {
-                        () => 
-                        <
-                            LoggedIn username = {this.state.username} name = {this.state.name} phone = {this.state.phone}
-                            loggedIn = {this.state.loggedin}
-                        />
+                        () => <LoggedIn/>
                     }/>
                     <Redirect to = "/home" />
                 </Switch>
