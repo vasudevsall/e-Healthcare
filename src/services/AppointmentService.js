@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'qs';
 import {REQ_URL} from '../constants/Constrants';
 
 const ALL_APPOINTMENT = REQ_URL + 'user/appointments';

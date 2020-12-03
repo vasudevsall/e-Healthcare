@@ -21,12 +21,15 @@ class DashboardContent extends Component {
     }
 
     componentDidMount() {
+        this.toUnmount = false;
         AppointmentService.getUpcomingAppointments()
         .then((resp) => {
-            this.setState({
-                upcomingAppointments: resp.data,
-                ifUpcomingData: true
-            })
+            if(!this.toUnmount) {
+                this.setState({
+                    upcomingAppointments: resp.data,
+                    ifUpcomingData: true
+                })
+            }
         }).catch((err) => {
             UserService.logoutUser()
                 .then((resp) => {
@@ -35,6 +38,10 @@ class DashboardContent extends Component {
                     this.props.history.push("/login");
                 });
         });
+    }
+    
+    componentWillUnmount() {
+        this.toUnmount = true;
     }
 
     formatDate(date, noTime = true) {
@@ -117,7 +124,7 @@ class DashboardContent extends Component {
                     </div>
 
                     <div className='row mb-5'>
-                        <div className= 'col-md-8 col-12'>
+                        <div className= 'col-lg-8 col-12'>
                             <div className = 'dash-card'>
                                 <div className = 'head'>
                                     Quick Links
@@ -154,25 +161,32 @@ class DashboardContent extends Component {
                                             <div className='fluid-container'>
                                                 <div className= 'row mb-3'>
                                                     <div className='col-6'>
-                                                        <Link to='/welcome/appointments/all'>
+                                                        <Link to={`${this.props.url}/appointments/all`}>
                                                             <span className='fa fa-list-alt fa-lg'></span> See All Appointments
                                                         </Link>
                                                     </div>
                                                     <div className='col-6'>
-                                                        <Link to='/welcome/appointments/history'>
+                                                        <Link to={`${this.props.url}/appointments/history`}>
                                                             <span className='fa fa-history fa-lg'></span> Previous Appointments
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                                <div className='row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/appointments/scheduled`}>
+                                                            <span className='fa fa-calendar fa-lg'></span> Scheduled Appointments
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/online`}>
+                                                            <span className='fa fa-wifi fa-lg'></span> Online Consultation
                                                         </Link>
                                                     </div>
                                                 </div>
                                                 <div className='row'>
                                                     <div className='col-6'>
-                                                        <Link to='/welcome/appointments/schedule'>
-                                                            <span className='fa fa-calendar fa-lg'></span> Scheduled Appointments
-                                                        </Link>
-                                                    </div>
-                                                    <div className='col-6'>
-                                                        <Link to='/welcome/online'>
-                                                            <span className='fa fa-wifi fa-lg'></span> Online Consultation
+                                                        <Link to={`${this.props.url}/appointments/schedule`}>
+                                                            <span className='fa fa-plus-square-o fa-lg'></span> Schedule New
                                                         </Link>
                                                     </div>
                                                 </div>
@@ -191,7 +205,7 @@ class DashboardContent extends Component {
                     </div>
 
                     <div className='row'>
-                        <div className= 'col-md-8 col-12'>
+                        <div className= 'col-lg-8 col-12'>
                             <div className = 'dash-card'>
                                 <div className = 'head'>
                                     Upcoming Appointments

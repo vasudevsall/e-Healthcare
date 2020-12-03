@@ -18,11 +18,14 @@ class Header extends Component {
     }
 
     componentDidMount() {
+        this.toUnmount = false;
         UserService.getUserDetails()
             .then((resp) => {
-                this.setState({
-                    username: resp.data.username
-                });
+                if(!this.toUnmount) {
+                    this.setState({
+                        username: resp.data.username
+                    });
+                }
             }).catch((err) => {
                UserService.logoutUser()
                 .then((resp) => {
@@ -31,6 +34,10 @@ class Header extends Component {
                     this.props.history.push("/login");
                 });
             });
+    }
+
+    componentWillUnmount() {
+        this.toUnmount = true;
     }
 
     logoutService() {

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import {Switch, Route, Redirect, withRouter, useRouteMatch} from 'react-router-dom';
 import Header from './LoginHeaderComponent';
 import UserService from '../../services/UserService';
 import SideBar from './LoginSideBarComponent';
 import DashboardContent from './LoggedInContentComponent';
+import AllAppoinemtns from './Appointments/AllAppointments';
 
-class LoggedIn extends Component {
+class LoggedInComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -28,15 +29,18 @@ class LoggedIn extends Component {
     }
 
     componentDidMount() {
+        this.toUnmount = false;
         UserService.getUserDetails()
             .then((resp) => {
-                this.setState({
-                    username: resp.data.username,
-                    name: resp.data.name,
-                    phoneNumber: resp.data.phoneNumber,
-                    gender: resp.data.gender,
-                    dateOfBirth: resp.data.dateOfBirth
-                });
+                if(!this.toUnmount) {
+                    this.setState({
+                        username: resp.data.username,
+                        name: resp.data.name,
+                        phoneNumber: resp.data.phoneNumber,
+                        gender: resp.data.gender,
+                        dateOfBirth: resp.data.dateOfBirth
+                    });
+                }
             }).catch((err) => {
                UserService.logoutUser()
                 .then((resp) => {
@@ -45,6 +49,10 @@ class LoggedIn extends Component {
                     this.props.history.push("/login");
                 });
             });
+    }
+
+    componentWillUnmount() {
+        this.toUnmount = true;
     }
 
     render() {
@@ -56,16 +64,26 @@ class LoggedIn extends Component {
 
                     <div id="content">
                         <Switch>
-                            <Route path="/" component = {() =>
-                                <DashboardContent userInfo = {this.state}/>}
+                            <Route exact path={`${this.props.path}`} component = {() =>
+                                <DashboardContent userInfo = {this.state} url={this.props.url}/>}
                             />
-                            <Redirect to="/"/>
+                            <Route exact path={`${this.props.path}/appointments/all`} component = {() => 
+                                <AllAppoinemtns url = {this.props.url}/>} 
+                            />
+                            <Redirect to={this.props.path}/>
                         </Switch>
                     </div>
                 </div>
             </>
         );
     }
+}
+
+function LoggedIn(props) {
+    let {path, url} = useRouteMatch();
+    return(
+        <LoggedInComponent path={path} url={url} history={props.history} />
+    );
 }
 
 export default withRouter(LoggedIn);

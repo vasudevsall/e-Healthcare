@@ -375,6 +375,7 @@ body {
   max-width: 250px;
   background-color: var(--col-prim);
   transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 100;
 }
 #sidebar.is-active{
   min-width: 300px;
@@ -404,7 +405,8 @@ body {
   border-bottom: 1px solid #555555;
 }
 .dash-card .body {
-  height: 150px;
+  min-height: 150px;
+  max-height: 300px;
   background-color: var(--col-grey);
   overflow-y: auto;
 }
@@ -422,6 +424,14 @@ body {
 }
 .tab-pane a span {
   color: rgba(0, 0, 0, 0.7)
+}
+
+.table-div {
+  height: 350px;
+  overflow-y: auto;
+}
+.table-bordered {
+  white-space: nowrap;
 }
 
 /* Dropdown */
@@ -494,33 +504,6 @@ body {
   .login-info ul {
     font-size: 14px;
   }
-}
-
-@media (max-width: 767.98px) {
-
-  /* Home Page */
-  .home-body h3 {
-    font-size: 20px;
-  }
-
-  .home-body .media-body h5 {
-    font-size: 18px;
-  }
-
-  /* Login Page */
-  .login-overlay {
-    padding-top: 20px;
-  }
-
-  .login-complete {
-    width: 100%;
-    flex-direction: column;
-    height: auto;
-  }
-
-  .login-form {
-    width: 100%;
-  }
 
   /* LoggedIn Welcome */
   .hamburger .line:nth-child(1),
@@ -568,6 +551,33 @@ body {
     position: absolute;
     min-width: 300px;
   }
+}
+
+@media (max-width: 767.98px) {
+
+  /* Home Page */
+  .home-body h3 {
+    font-size: 20px;
+  }
+
+  .home-body .media-body h5 {
+    font-size: 18px;
+  }
+
+  /* Login Page */
+  .login-overlay {
+    padding-top: 20px;
+  }
+
+  .login-complete {
+    width: 100%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-form {
+    width: 100%;
+  }
 
   /* Footer */
   .foot-link-div {
@@ -584,5 +594,15 @@ body {
   /* Login Page */
   .login-form label {
     padding: 0;
+  }
+
+  /* LoggedIn */
+  #content {
+    padding: 30px 15px;
+  }
+
+  /* Overriding Bootstrap */
+  .container {
+    width: 90%;
   }
 }

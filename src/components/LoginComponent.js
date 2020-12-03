@@ -38,8 +38,6 @@ class Login extends Component {
                 this.setState({
                     errMess: ''
                 });
-                this.props.toggleLogin(true);
-                this.props.setUserInfo(resp.data.username, resp.data.name, resp.data.phoneNumber);
                 switch(resp.data.roles) {
                     case "ROLE_USER":
                         this.props.history.push("/welcome");
