@@ -5,6 +5,11 @@ import UserService from '../../services/UserService';
 import SideBar from './LoginSideBarComponent';
 import DashboardContent from './LoggedInContentComponent';
 import AllAppoinemtns from './Appointments/AllAppointments';
+import ScheduleAppointments from './Appointments/ScheduleAppointment';
+import PreviousAppointments from './Appointments/PreviousAppointments';
+import ScheduledAppointment from './Appointments/ScheduledAppointments';
+import UserPrescriptions from './Pharmacy/UserPrescriptions';
+import SearchMedicine from './Pharmacy/SearchMedicine';
 
 class LoggedInComponent extends Component {
 
@@ -60,7 +65,7 @@ class LoggedInComponent extends Component {
             <>
                 <Header/>
                 <div className="wrapper">
-                    <SideBar></SideBar>
+                    <SideBar userInfo = {this.state} url = {this.props.url}/>
 
                     <div id="content">
                         <Switch>
@@ -69,6 +74,21 @@ class LoggedInComponent extends Component {
                             />
                             <Route exact path={`${this.props.path}/appointments/all`} component = {() => 
                                 <AllAppoinemtns url = {this.props.url}/>} 
+                            />
+                            <Route exact path={`${this.props.path}/appointments/schedule`} component = {() =>
+                                <ScheduleAppointments url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/appointments/history`} component = {() =>
+                                <PreviousAppointments url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/appointments/scheduled`} component = {() =>
+                                <ScheduledAppointment url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/pharmacy/prescriptions`} component = {() =>
+                                <UserPrescriptions url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/pharmacy/search`} component = {() =>
+                                <SearchMedicine url = {this.props.url}/>}
                             />
                             <Redirect to={this.props.path}/>
                         </Switch>

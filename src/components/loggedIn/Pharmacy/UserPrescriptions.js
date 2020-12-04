@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import AppointmentService from '../../../services/AppointmentService';
+import PharmacyService from '../../../services/PharmacyService';
 import UserService from '../../../services/UserService';
 import {withRouter} from 'react-router-dom';
 import {Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-class AllAppointments extends Component {
+class UserPrescriptions extends Component {
 
     constructor(props) {
         super(props)
         this.state ={
-            appointments: [],
-            appointmentsAvailable: false,
+            prescription: [],
+            prescriptionsAvailable: false,
             errMess: ''
         }
         this.formTable = this.formTable.bind(this);
@@ -20,12 +20,12 @@ class AllAppointments extends Component {
 
     componentDidMount() {
         this.toUnmount = false;
-        AppointmentService.getAppointments()
+        PharmacyService.getPrescriptions()
             .then((resp) => {
                 if(!this.toUnmount) {
                     this.setState({
-                        appointments: resp.data,
-                        appointmentsAvailable: true
+                        prescription: resp.data,
+                        prescriptionsAvailable: true
                     });
                 }
             })
@@ -47,33 +47,28 @@ class AllAppointments extends Component {
         this.toUnmount = true;
     }
 
-    formatDate(date, noTime = true) {
-        let dt = date.split("T");
-        let ymd = dt[0].split("-");
-        let time = dt[1].split("+");
-        let t = time[0].split(".");
-        if(noTime)
-            return (ymd[2] + "-" + ymd[1] + "-" + ymd[0]);
-        return t[0];
+    formatDate(date) {
+        let dt = date.split(" ")
+        return dt[0];
     }
 
     formTable() {
-        if(!this.state.appointmentsAvailable) {
+        if(!this.state.prescriptionsAvailable) {
             return(
                 <div className='full-flex-span'>
                     <span className = 'fa fa-spin fa-circle-o-notch'></span>
                 </div>
             );
         } else {
-            if(this.state.appointments.length > 0) {
+            if(this.state.prescription.length > 0) {
                 let counter = 1;
-                const tableBody = this.state.appointments.map((appointment) => {
+                const tableBody = this.state.prescription.map((prescription) => {
                     return(
-                        <tr key={appointment.serial}>
+                        <tr key={prescription.serial}>
                             <td>{counter++}</td>
-                            <td>{`Dr. ${appointment.doctor.firstName} ${appointment.doctor.lastName}`}</td>
-                            <td>{this.formatDate(appointment.date)}</td>
-                            <td>{this.formatDate(appointment.date, false)}</td>
+                            <td>{prescription.prescription}</td>
+                            <td>{`Dr. ${prescription.doctor}`}</td>
+                            <td>{this.formatDate(prescription.date)}</td>
                         </tr>
                     );
                 });
@@ -82,15 +77,21 @@ class AllAppointments extends Component {
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Prescription</th>
                                 <th>Doctor</th>
                                 <th>Date</th>
-                                <th>Time</th>
                             </tr>
                         </thead>
                         <tbody>
                             {tableBody}
                         </tbody>
                     </Table>
+                );
+            } else {
+                return(
+                    <div className='full-flex-span'>
+                        No prescriptions to display
+                    </div>
                 );
             }
         }
@@ -103,7 +104,7 @@ class AllAppointments extends Component {
             <div className='fluid-container'>
                 <div className='row mb-2'>
                     <div className='col-12'>
-                        <h4>All Appointments</h4>
+                        <h4>Your Prescriptions</h4>
                         <hr/>
                     </div>
                 </div>
@@ -114,13 +115,18 @@ class AllAppointments extends Component {
                 </div>
                 <div className='row'>
                     <div className='px-2 mx-2 mb-2'>
-                        <Link className='btn btn-dark' to={`${this.props.url}/appointments/schedule`}>
-                            Schedule New
+                        <Link className='btn btn-dark' to={`${this.props.url}/pharmacy/search`}>
+                            Search Medicine
                         </Link>
                     </div>
                     <div className='px-2 mx-2'>
-                        <Link className='btn btn-dark' to={`${this.props.url}/appointments/scheduled`}>
-                            Cancel Scheduled
+                        <Link className='btn btn-dark' to={`${this.props.url}/pharmacy/order`}>
+                            Order Medicine
+                        </Link>
+                    </div>
+                    <div className='px-2 mx-2'>
+                        <Link className='btn btn-dark' to={`${this.props.url}/pharmacy/orders`}>
+                            Your Orders
                         </Link>
                     </div>
                 </div>
@@ -130,4 +136,4 @@ class AllAppointments extends Component {
 
 }
 
-export default withRouter(AllAppointments);
+export default withRouter(UserPrescriptions);

@@ -196,7 +196,32 @@ class DashboardContent extends Component {
                                             <h4>Tab 2</h4>
                                         </TabPane>
                                         <TabPane tabId="3">
-                                            <h4>Tab 3</h4>
+                                            <div className='fluid-container'>
+                                                <div className= 'row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/pharmacy/prescriptions`}>
+                                                            <span className='fa fa-user-md fa-lg'></span> Your Prescriptions
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/pharmacy/order`}>
+                                                            <span className='fa fa-medkit fa-lg'></span> Order Medicine
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                                <div className='row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/pharmacy/orders`}>
+                                                            <span className='fa fa-truck fa-lg'></span> Your Orders
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/pharmacy/search`}>
+                                                            <span className='fa fa-search fa-lg'></span> Search Medicine
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </TabPane>
                                     </TabContent>
                                 </div>
