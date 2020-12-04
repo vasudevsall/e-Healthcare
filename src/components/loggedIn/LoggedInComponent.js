@@ -10,6 +10,8 @@ import PreviousAppointments from './Appointments/PreviousAppointments';
 import ScheduledAppointment from './Appointments/ScheduledAppointments';
 import UserPrescriptions from './Pharmacy/UserPrescriptions';
 import SearchMedicine from './Pharmacy/SearchMedicine';
+import OrderMedicine from './Pharmacy/OrderMedicine';
+import MedOrders from './Pharmacy/MedOrders';
 
 class LoggedInComponent extends Component {
 
@@ -89,6 +91,12 @@ class LoggedInComponent extends Component {
                             />
                             <Route exact path={`${this.props.path}/pharmacy/search`} component = {() =>
                                 <SearchMedicine url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/pharmacy/order`} component = {() =>
+                                <OrderMedicine url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/pharmacy/orders`} component = {() =>
+                                <MedOrders url = {this.props.url}/>}
                             />
                             <Redirect to={this.props.path}/>
                         </Switch>

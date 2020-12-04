@@ -44,10 +44,23 @@ function SideBar(props) {
 
             <Card>
                 <CardHeader onClick={() => {toggle === 2 ? setToggle(0) : setToggle(2)}}>
-                    <span className='font-weight-bold'>Lab</span>
+                    <span className='font-weight-bold'>Pharmacy</span>
                 </CardHeader>
                 <Collapse isOpen={toggle === 2 ? true : false}>
-                    <CardBody>Hello</CardBody>
+                    <CardBody>
+                    <Link to={`${props.url}/pharmacy/prescriptions`}>
+                            <span className='fa fa-user-md'></span> Your Prescriptions
+                        </Link>
+                        <Link to={`${props.url}/pharmacy/order`}>
+                            <span className='fa fa-medkit'></span> New Order
+                        </Link>
+                        <Link to={`${props.url}/pharmacy/orders`}>
+                            <span className='fa fa-truck'></span> Your Orders
+                        </Link>
+                        <Link to={`${props.url}/pharmacy/search`}>
+                            <span className='fa fa-search'></span> Search Medicine
+                        </Link>
+                    </CardBody>
                 </Collapse>
             </Card>
         </div>
