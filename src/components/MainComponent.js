@@ -4,6 +4,7 @@ import Header from './HeaderComponent';
 import Home from './HomeComponent';
 import Login from './LoginComponent';
 import LoggedIn from './loggedIn/LoggedInComponent';
+import ManagerHome from './ManagerLogin/ManagerHomeComponent';
 
 class Main extends Component {
 
@@ -19,6 +20,9 @@ class Main extends Component {
                     }/>
                     <Route path = "/welcome" component = {
                         () => <LoggedIn/>
+                    }/>
+                    <Route path = "/manager" component = {
+                        () => <ManagerHome/>
                     }/>
                     <Redirect to = "/home" />
                 </Switch>

@@ -134,7 +134,7 @@ class MedOrders extends Component {
                     errMess: 'Error fetching your order'
                 })
             })
-        }) .catch((err) => {
+        }).catch((err) => {
             this.setState({
                 errMess: 'Cannot cancel your order'
             })

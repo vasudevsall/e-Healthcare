@@ -1,20 +1,19 @@
 import axios from 'axios';
 import {REQ_URL} from '../constants/Constrants';
 
-const DOCTOR_DETAILS = REQ_URL + 'manage/doctor/details'
+const ACCOMODATIONS = REQ_URL + 'manage/accomodation';
 
-class DoctorService {
+class AccomodationService {
 
-    getDoctorDetails(docId) {
+    getAccomodationInformatin() {
         const config = {
             method: 'get',
             withCredentials: true,
-            url: DOCTOR_DETAILS + '?id=' + docId
+            url: ACCOMODATIONS
         };
 
         return axios(config);
     }
-
 }
 
-export default new DoctorService();
+export default new AccomodationService();

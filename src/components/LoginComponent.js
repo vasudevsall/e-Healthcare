@@ -42,6 +42,10 @@ class Login extends Component {
                     case "ROLE_USER":
                         this.props.history.push("/welcome");
                         break;
+
+                    case "ROLE_MANAGE":
+                        this.props.history.push("/manager");
+                        break;
                     
                     default:
                         this.props.history.push("/");

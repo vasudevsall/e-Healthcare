@@ -437,7 +437,8 @@ body {
 .dash-card .head {
   width: 100%;
   padding: 10px 20px;
-  height: 40px;
+  min-height: 40px;
+  max-height: 80px;
   background-color: var(--col-prim-2);
   color: var(--col-ter);
   border-bottom: 1px solid #555555;
@@ -490,6 +491,79 @@ body {
 input[type = 'submit'].form-control {
   background-color: var(--col-prim-2);
   color: var(--col-grey);
+}
+
+/* Manager */
+.manager-dash {
+  background-color: #fff;
+  position: relative;
+  border: none;
+  box-shadow: 0 0 2px 0 var(--col-prim-2);
+}
+
+.manager-dash .head {
+  padding: 3px 10px;
+  font-size: 12px;
+  min-height: 15px;
+  max-height: 20px;
+  background-color: transparent;
+  border: none;
+  color: var(--col-prim-2);
+}
+
+.manager-dash .body{
+  background-color: transparent;
+  min-height: 40px;
+  max-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+.manager-dash .body .float-right {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  font-size: 30px;
+  opacity: 0.6;
+  transition: all 0.5s;
+}
+
+.manager-dash:hover .body .float-right {
+  opacity: 0.8;
+  transition: all 0.5s ease-in;
+  transform: scale(1.2) rotateZ(-10deg);
+}
+
+.manager-dash:hover .body .hover-red {
+  color: var(--red);
+}
+.manager-dash:hover .body .hover-yellow {
+  color: var(--yellow);
+}
+.manager-dash:hover .body .hover-purple {
+  color: var(--purple);
+}
+.manager-dash:hover .body .hover-orange {
+  color: var(--orange);
+}
+.manager-dash:hover .body .hover-teal {
+  color: var(--teal);
+}
+.manager-dash:hover .body .hover-blue {
+  color: var(--blue);
+}
+.manager-dash:hover .body .hover-green {
+  color: var(--green);
+}
+.manager-dash:hover .body .hover-cyan {
+  color: var(--cyan);
+}
+
+.details-table-div {
+  max-height: 350px;
+  overflow: auto;
 }
 
 /* Dropdown */
