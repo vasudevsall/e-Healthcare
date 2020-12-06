@@ -114,8 +114,8 @@ class AllPatients extends Component {
                         <td>{this.printGender(patient.gender)}</td>
                         <td>{this.formatDate(patient.dateOfBirth)}</td>
                         <td>
-                            <Link className='btn btn-secondary' to={`${this.props.url}/patient/details/${patient.id}`}>
-                                Details
+                            <Link className='btn bg-info btn-secondary' to={`${this.props.url}/patient/details/${patient.id}`}>
+                                <span className='fa fa-info-circle fa-lg'></span>
                             </Link>
                         </td>
                     </tr>

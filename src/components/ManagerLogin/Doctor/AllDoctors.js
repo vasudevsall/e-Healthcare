@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import InfoService from '../../../services/InfoService';
 import UserService from '../../../services/UserService';
+import PatientService from '../../../services/PatientService';
 import {withRouter} from 'react-router-dom';
-import {Table, Form, FormGroup, Input, Label, Col, Button, Row} from 'reactstrap';
+import {Table, Form, FormGroup, Input, Label, Col, Button, Row, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 class AllDoctors extends Component {
@@ -15,12 +16,17 @@ class AllDoctors extends Component {
             doctorsAvaiable: false,
             errMess: '',
             name: '',
-            doFilter: false
+            doFilter: false,
+            isModalOpen: false,
+            selectedId: 0
         }
         this.formTable = this.formTable.bind(this);
         this.printGender = this.printGender.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
@@ -110,18 +116,20 @@ class AllDoctors extends Component {
                             <td>{this.printGender(doctor.gender)}</td>
                             <td>{doctor.dateOfBirth}</td>
                             <td>{doctor.speciality[0]}</td>
-                            <td>{doctor.qualification}</td>
                             <td>
-                                <Link className='btn btn-secondary' to={`${this.props.url}/doctor/details/${doctor.id}`}>
-                                    Details
+                                <Link className='btn btn-secondary bg-info mx-1' to={`${this.props.url}/doctor/details/${doctor.id}`}>
+                                    <span className='fa fa-info-circle fa-lg'></span>
                                 </Link>
+                                <button onClick={() => this.openModal(doctor.id)} className='btn btn-dark bg-danger mx-1'>
+                                    <span className='fa fa-trash fa-lg'></span>
+                                </button>
                             </td>
                         </tr>
                 );
             });
             return(
                 <>
-                    <Table hover bordered striped responsive size="sm">
+                    <Table hover bordered responsive striped size="sm">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -131,7 +139,6 @@ class AllDoctors extends Component {
                                 <th>Gender</th>
                                 <th>Date of Birth</th>
                                 <th>Speciality</th>
-                                <th>Qualification</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -144,11 +151,56 @@ class AllDoctors extends Component {
         }
     }
 
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        })
+    }
+
+    openModal(id) {
+        this.setState({
+            selectedId: id,
+            isModalOpen: true
+        });
+    }
+
+    deleteUser() {
+        PatientService.deleteUser(this.state.selectedId)
+        .then((resp) => {
+            InfoService.getAllDoctors()
+            .then((resp) => {
+                this.setState({
+                    doctors: resp.data,
+                    allDoctors: resp.data,
+                    doctorsAvaiable: true,
+                    isModalOpen: false
+                });
+            }).catch((err) => {
+                this.setState({
+                    errMess: 'Cannot fetch Details'
+                })
+            })  
+        }).catch((err) => {
+            this.setState({
+                errMess: 'User cannot be deleted'
+            });
+        });
+    }
+
     render() {
         const table = this.formTable();
 
         return(
             <div className='fluid-container'>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Are you sure ?</ModalHeader>
+                    <ModalBody>
+                        <div className='full-flex-span mt-5'>
+                            <Button onClick={this.deleteUser} className='bg-danger mx-3'>Delete</Button>
+                            <Button onClick={this.toggleModal} className='bg-success mx-3'>Cancel</Button>
+                        </div>
+                    </ModalBody>
+                </Modal>
                 <div className='row mb-2'>
                     <div className='col-12'>
                         <h4>All Doctors</h4>

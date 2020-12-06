@@ -42,6 +42,25 @@ function ManagerSideBar(props) {
                         <Link to={`${props.url}/doctor/all`}>
                             <span className='fa fa-user-md'></span> All Doctors
                         </Link>
+                        <Link to={`${props.url}/doctor/new`}>
+                            <span className='fa fa-user-plus'></span> Add Doctor
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 3 ? setToggle(0) : setToggle(3)}}>
+                    <span className='font-weight-bold'>Staff</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 3 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/staff/all`}>
+                            <span className='fa fa-users'></span> All Staff Members
+                        </Link>
+                        <Link to={`${props.url}/staff/new`}>
+                            <span className='fa fa-user-plus'></span> Add Staff Member
+                        </Link>
                     </CardBody>
                 </Collapse>
             </Card>

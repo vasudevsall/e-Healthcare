@@ -56,6 +56,16 @@ class PatientService {
 
         return axios(config);
     }
+
+    deleteUser(id) {
+        const config ={
+            method: 'delete',
+            withCredentials: true,
+            url: PATIENT + '?id=' + id
+        };
+
+        return axios(config);
+    }
 }
 
 export default new PatientService();
