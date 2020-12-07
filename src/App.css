@@ -398,6 +398,8 @@ body {
 
 #sidebar .card-header {
   border-radius: 0!important;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 #sidebar .card-header:hover {
   cursor: pointer;
@@ -411,7 +413,7 @@ body {
 #sidebar .card-body a {
   color: var(--col-prim-2);
   display: block;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 #sidebar .card-body a:hover {
   color: var(--col-prim);
@@ -488,7 +490,7 @@ body {
   min-height: 200px;
 }
 
-input[type = 'submit'].form-control {
+input[type = 'submit'].form-control, button[type = 'submit'].btn {
   background-color: var(--col-prim-2);
   color: var(--col-grey);
 }

@@ -13,6 +13,9 @@ import NewDoctor from './Doctor/NewDoctor';
 import AllStaff from './Staff/AllStaff';
 import NewStaff from './Staff/NewStaff';
 import StaffDetails from './Staff/StaffDetails';
+import PreviousAppointments from './Appointment/PreviousAppointments';
+import AppointmentSchedule from './Appointment/AppointmentSchedule';
+import NewAppointment from './Appointment/NewAppointment';
 
 class ManagerDashboard extends Component {
 
@@ -103,6 +106,15 @@ class ManagerDashboard extends Component {
                             />
                             <Route path={`${this.props.path}/staff/details/:userId`} component = {() =>
                                 <StaffDetails url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/appointment/previous`} component = {() =>
+                                <PreviousAppointments url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/appointment/schedule`} component = {() =>
+                                <AppointmentSchedule url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/appointment/new`} component = {() =>
+                                <NewAppointment url={this.props.url}/>}
                             />
                             <Redirect to={this.props.path} />
                         </Switch>

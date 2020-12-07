@@ -64,6 +64,44 @@ function ManagerSideBar(props) {
                     </CardBody>
                 </Collapse>
             </Card>
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 4 ? setToggle(0) : setToggle(4)}}>
+                    <span className='font-weight-bold'>Appointments</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 4 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/appointment/previous`}>
+                            <span className='fa fa-history'></span> Appointments History
+                        </Link>
+                        <Link to={`${props.url}/appointment/schedule`}>
+                            <span className='fa fa-calendar'></span> Scheduled Appointments
+                        </Link>
+                        <Link to={`${props.url}/appointment/new`}>
+                            <span className='fa fa-calendar-plus-o'></span> New Appointment
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 5 ? setToggle(0) : setToggle(5)}}>
+                    <span className='font-weight-bold'>Ward Services</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 5 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/room/current`}>
+                            <span className='fa fa-bed'></span> Patients Admitted
+                        </Link>
+                        <Link to={`${props.url}/room/history`}>
+                            <span className='fa fa-history'></span> History
+                        </Link>
+                        <Link to={`${props.url}/room/admit`}>
+                            <span className='fa fa-plus-square'></span> Admit a patient
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
         </div>
     );
 }

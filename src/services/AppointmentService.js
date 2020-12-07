@@ -6,7 +6,10 @@ const UPCOMING = REQ_URL + 'user/appointments/upcoming';
 const PREVIOUS = REQ_URL + 'user/appointments/previous';
 const SCHEDULE = REQ_URL + 'user/schedule';
 const DELETE = REQ_URL + 'user/appointments/delete?serial=';
-const DETAILS = REQ_URL + 'user/appointments/details?id='
+const DETAILS = REQ_URL + 'user/appointments/details?id=';
+const MANAGER_APPOINTMENT = REQ_URL + 'appointments';
+const MANAGER_PREVIOUS = REQ_URL + 'appointments/previous';
+const MANAGER_SCHEDULE = REQ_URL + 'appointments/schedule';
 
 class AppointmentService {
 
@@ -74,6 +77,52 @@ class AppointmentService {
             method: 'get',
             withCredentials: true,
             url: DETAILS + serial
+        };
+
+        return axios(config);
+    }
+
+    getAllAppointments() {
+        const config = {
+            method: 'get',
+            withCredentials: true,
+            url: MANAGER_APPOINTMENT
+        }
+
+        return axios(config);
+    }
+
+    getAllPreviousAppointments() {
+        const config = {
+            method: 'get',
+            withCredentials: true,
+            url: MANAGER_PREVIOUS
+        }
+
+        return axios(config);
+    }
+
+    getScheduledAppointments() {
+        const config = {
+            method: 'get',
+            withCredentials: true,
+            url: MANAGER_SCHEDULE
+        };
+        return axios(config);
+    }
+
+    postNewAppointment(userPhone, doctor_id, date) {
+        const data = {
+            userPhone: userPhone,
+            doctor_id: doctor_id,
+            date: date
+        };
+
+        const config = {
+            method: 'post',
+            withCredentials: true,
+            url: MANAGER_APPOINTMENT,
+            data: data
         };
 
         return axios(config);

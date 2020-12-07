@@ -189,11 +189,6 @@ class AllPatients extends Component {
                             Add New
                         </Link>
                     </div>
-                    <div className='px-2 mx-2'>
-                        <Link className='btn btn-dark' to={`${this.props.url}/patient/search`}>
-                            Patient Details
-                        </Link>
-                    </div>
                 </div>
             </div>
         );
