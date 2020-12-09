@@ -427,7 +427,7 @@ body {
   padding: 30px 50px;
 }
 
-#content h4 {
+#content h4, #content h6 {
   color: var(--col-prim);
 }
 
@@ -470,14 +470,37 @@ body {
 .table-div {
   height: 350px;
   overflow-y: auto;
+  position: relative;
+  padding-bottom: 0;
 }
-.table-bordered {
+.table-div .table-bordered {
   white-space: nowrap;
+}
+.table-div.wrap .table-bordered {
+  white-space: normal;
 }
 .table thead{
   background-color: var(--col-prim-2);
   color: var(--col-grey);
   border-radius: 10px;
+}
+.table-div .table {
+  margin-bottom: 0;
+}
+.table-div::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 20px;
+}
+.table-div::-webkit-scrollbar-track {
+  background-color: var(--col-light-2);
+  border-radius: 20px;
+}
+.table-div::-webkit-scrollbar-thumb {
+  background-color: var(--col-prim);
+  border-radius: 20px;
+}
+.table-div::-webkit-scrollbar-thumb:hover {
+  background-color: var(--col-prim-2);
 }
 
 .del-btn {
@@ -597,6 +620,16 @@ input[type = 'submit'].form-control, button[type = 'submit'].btn {
 
 .dropdown-item.active, .dropdown-item:active {
   background-color: var(--col-prim);
+}
+
+/* Bill */
+.bill .icon{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2em;
+  color: var(--col-light);
+}
+.bill .icon label {
+  filter: blur(0.3px);
 }
 
 /* Support Classes */

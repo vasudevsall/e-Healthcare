@@ -207,9 +207,12 @@ class AllDoctors extends Component {
                         <hr/>
                     </div>
                 </div>
-                <div className='row mb-5'>
-                    <div className='col-12 table-div'>
-                        {table}
+                <div className='row mb-3'>
+                    <div className='col-12'>
+                        <div className='table-div'>
+                            {table}
+                        </div>
+                        <hr className='m-0' />
                     </div>
                 </div>
                 <Row className='mb-3'>

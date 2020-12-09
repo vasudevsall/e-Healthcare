@@ -5,6 +5,7 @@ import Home from './HomeComponent';
 import Login from './LoginComponent';
 import LoggedIn from './loggedIn/LoggedInComponent';
 import ManagerHome from './ManagerLogin/ManagerHomeComponent';
+import BillComponent from './ManagerLogin/Ward/BillComponent';
 
 class Main extends Component {
 
@@ -24,6 +25,9 @@ class Main extends Component {
                     <Route path = "/manager" component = {
                         () => <ManagerHome/>
                     }/>
+                    <Route path={`/bill/:roomId`} component = {() =>
+                        <BillComponent url={this.props.url}/>}
+                    />
                     <Redirect to = "/home" />
                 </Switch>
             </>

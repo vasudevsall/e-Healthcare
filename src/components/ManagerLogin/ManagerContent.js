@@ -218,7 +218,7 @@ class ManagerContent extends Component {
                                     Total Beds
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.usersAvailable)? this.state.accomodation.beds : <Loader/>}
+                                    {(this.state.usersAvailable)? this.state.accomodation.totalBeds : <Loader/>}
                                     <span className='fa fa-bed hover-orange float-right'></span>
                                 </div>
                             </div>
@@ -230,7 +230,7 @@ class ManagerContent extends Component {
                                     Available Beds
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.doctorsAvailable)? this.state.accomodation.totalBeds : <Loader/>}
+                                    {(this.state.doctorsAvailable)? this.state.accomodation.beds : <Loader/>}
                                     <span className='fa fa-bed hover-orange float-right'></span>
                                 </div>
                             </div>

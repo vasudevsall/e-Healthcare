@@ -256,12 +256,15 @@ class PreviousAppointments extends Component {
                         <hr/>
                     </div>
                 </div>
-                <div className='row'>
-                    <div className='col-12 table-div'>
-                        {table}
+                <div className='row mb-3'>
+                    <div className='col-12'>
+                        <div className='table-div'>
+                            {table}
+                        </div>
+                        <hr className='m-0' />
                     </div>
                 </div>
-                <Row className='mb-5'>
+                <Row className='mb-3'>
                     <Col sm={12}>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup row>

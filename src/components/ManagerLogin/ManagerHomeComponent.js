@@ -16,6 +16,9 @@ import StaffDetails from './Staff/StaffDetails';
 import PreviousAppointments from './Appointment/PreviousAppointments';
 import AppointmentSchedule from './Appointment/AppointmentSchedule';
 import NewAppointment from './Appointment/NewAppointment';
+import CurrentRoom from './Ward/CurrentRoom';
+import RoomHistory from './Ward/RoomHistory';
+import AdmitPatient from './Ward/AdmitPatient';
 
 class ManagerDashboard extends Component {
 
@@ -115,6 +118,15 @@ class ManagerDashboard extends Component {
                             />
                             <Route path={`${this.props.path}/appointment/new`} component = {() =>
                                 <NewAppointment url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/room/current`} component = {() =>
+                                <CurrentRoom url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/room/history`} component = {() =>
+                                <RoomHistory url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/room/admit`} component = {() =>
+                                <AdmitPatient url={this.props.url}/>}
                             />
                             <Redirect to={this.props.path} />
                         </Switch>
