@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import AccomodationService from '../../../services/AccomodationService';
 import {withRouter, Link} from 'react-router-dom';
-import {Table, UncontrolledTooltip, Modal, ModalBody, ModalHeader, Button, Form, FormGroup, Input, Col} from 'reactstrap';
+import {Table, Form, FormGroup, Input, Col, Button} from 'reactstrap';
+import AccomodationService from '../../../services/AccomodationService';
 
-class CurrentRoom extends Component {
+class IcuHistory extends Component {
 
     constructor(props) {
         super(props);
@@ -13,15 +13,12 @@ class CurrentRoom extends Component {
             allRooms: [],
             roomsAvailable: false,
             errMess: '',
-            selectedId: 0,
-            isModalOpen: false,
             name: '',
-            admit: ''
-        }
+            admit: '',
+            discharge: ''
+        };
 
         this.formTable = this.formTable.bind(this);
-        this.openModal = this.openModal.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.dateFocus = this.dateFocus.bind(this);
@@ -31,7 +28,7 @@ class CurrentRoom extends Component {
 
     componentDidMount() {
         this.toUnmount = false;
-        AccomodationService.getCurrentRoomBookings()
+        AccomodationService.getICUHistory()
         .then((resp) => {
             if(!this.toUnmount) {
                 this.setState({
@@ -43,7 +40,7 @@ class CurrentRoom extends Component {
         }).catch((err) => {
             if(!this.toUnmount) {
                 this.setState({
-                    errMess: 'Error fetching current admission details'
+                    errMess: 'Error fetching history'
                 })
             }
         })
@@ -51,19 +48,6 @@ class CurrentRoom extends Component {
 
     componentWillUnmount() {
         this.toUnmount = true;
-    }
-
-    openModal(id) {
-        this.setState({
-            selectedId: id,
-            isModalOpen: true
-        });
-    }
-
-    toggleModal() {
-        this.setState({
-            isModalOpen: !this.state.isModalOpen
-        });
     }
 
     handleChange(event) {
@@ -85,7 +69,7 @@ class CurrentRoom extends Component {
             let name = room.user.firstName + ' ' + room.user.lastName;
             name = name.toLowerCase();
             let search = this.state.name.toLowerCase();
-            if(name.includes(search) && room.checkin.includes(this.state.admit)) {
+            if(name.includes(search) && room.checkin.includes(this.state.admit) && room.checkout.includes(this.state.discharge)) {
                 filterRooms.push(room);
             }
         }
@@ -117,15 +101,15 @@ class CurrentRoom extends Component {
         if(!this.state.roomsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className='fa fa-spin fa-circle-o-notch'></span>
                 </div>
             );
         } else {
             if(this.state.rooms.length === 0) {
                 if(this.state.allRooms.length === 0) {
-                    return (
+                    return(
                         <div className='full-flex-span'>
-                            <label>No Patient admitted</label>
+                            <label>No Patient Admission History</label>
                         </div>
                     );
                 }
@@ -134,55 +118,42 @@ class CurrentRoom extends Component {
                         <label>No record matching current filters</label>
                     </div>
                 );
-            } else {
-
-                const tableBody = this.state.rooms.map((room) => {
-                    return(
-                        <tr key={room.id}>
-                            <td>{room.id}</td>
-                            <td>{room.roomNo.roomNo}</td>
-                            <td>{room.user.firstName + ' ' + room.user.lastName}</td>
-                            <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
-                            <td>{room.staff.name}</td>
-                            <td>{room.details}</td>
-                            <td>{room.checkin}</td>
-                            <td>
-                                <button onClick={() => this.openModal(room.id)}
-                                    className='btn btn-outline-success btn-sm'
-                                    id={`patient-discharge-${room.id}`}
-                                >
-                                    <span className='fa fa-sign-out fa-lg'></span>
-                                </button>
-                                <UncontrolledTooltip target={`patient-discharge-${room.id}`} placement='right'>
-                                    Discharge
-                                </UncontrolledTooltip>
-                            </td>
-                        </tr>
-                    );
-                });
-
-                return(
-                    <>
-                        <Table hover bordered responsive striped size="sm">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Room No</th>
-                                    <th>Patient Name</th>
-                                    <th>Doctor Name</th>
-                                    <th>Support Staff</th>
-                                    <th>Details</th>
-                                    <th>Admit</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tableBody}
-                            </tbody>
-                        </Table>
-                    </>
-                );
             }
+
+            const tableBody = this.state.rooms.map((room) => {
+                return(
+                    <tr key={room.id}>
+                        <td>{room.icuNo.icuNo}</td>
+                        <td>{room.user.firstName + ' ' + room.user.lastName}</td>
+                        <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
+                        <td>{room.staff.name}</td>
+                        <td>{room.details}</td>
+                        <td>{room.checkin}</td>
+                        <td>{room.checkout}</td>
+                    </tr>
+                );
+            });
+
+            return(
+                <>
+                    <Table hover bordered responsive striped size="sm">
+                        <thead>
+                            <tr>
+                                <th>Room No</th>
+                                <th>Patient Name</th>
+                                <th>Doctor Name</th>
+                                <th>Support Staff</th>
+                                <th>Details</th>
+                                <th>Admit</th>
+                                <th>Discharge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableBody}
+                        </tbody>
+                    </Table>
+                </>
+            );
         }
     }
 
@@ -190,19 +161,7 @@ class CurrentRoom extends Component {
         const table = this.formTable();
         return(
             <>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Are You Sure ?</ModalHeader>
-                    <ModalBody>
-                        <div className='full-flex-span mt-5'>
-                            <Link to={`/bill/${this.state.selectedId}`}
-                                className='btn btn-dark bg-danger mx-3'
-                            >
-                                Discharge
-                            </Link>
-                            <Button onClick={this.toggleModal} className='bg-success mx-3'>Cancel</Button>
-                        </div>
-                    </ModalBody>
-                </Modal>
+
                 <div className='row mb-5'>
                     <div className='col-12'>
                         <div className='table-div-300'>
@@ -211,6 +170,7 @@ class CurrentRoom extends Component {
                         <hr className='m-0' />
                     </div>
                 </div>
+
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup row>
                         <Col sm={3}>
@@ -232,6 +192,16 @@ class CurrentRoom extends Component {
                             />
                         </Col>
                         <Col sm={3}>
+                            <Input type='text'
+                                placeholder='Discharge'
+                                name = 'discharge'
+                                onFocus={this.dateFocus}
+                                onBlur={this.dateBlur}
+                                value = {this.state.discharge}
+                                onChange = {this.handleChange}
+                            />
+                        </Col>
+                        <Col sm={3}>
                             <Button type='submit' className='mr-1'>
                                 <span className='fa fa-search fa-lg'></span>
                             </Button>
@@ -243,8 +213,8 @@ class CurrentRoom extends Component {
                 </Form>
                 <div className='row'>
                     <div className='px-2 mx-2 mb-2'>
-                        <Link className='btn btn-dark' to={`${this.props.url}/room/history`}>
-                            History
+                        <Link className='btn btn-dark' to={`${this.props.url}/room/current`}>
+                            Current Admit
                         </Link>
                     </div>
                     <div className='px-2 mx-2 mb-2'>
@@ -258,4 +228,4 @@ class CurrentRoom extends Component {
     }
 }
 
-export default withRouter(CurrentRoom);
+export default withRouter(IcuHistory);

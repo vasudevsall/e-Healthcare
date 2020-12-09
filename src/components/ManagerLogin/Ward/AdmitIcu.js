@@ -6,7 +6,7 @@ import {Table, Modal, ModalBody, ModalHeader, UncontrolledTooltip,
 import InfoService from '../../../services/InfoService';
 import StaffService from '../../../services/StaffService';
 
-class AdmitPatient extends Component {
+class AdmitIcu extends Component {
 
     constructor(props) {
         super(props);
@@ -43,7 +43,7 @@ class AdmitPatient extends Component {
 
     componentDidMount() {
         this.toUnmount = false;
-        AccomodationService.getAllRoomsInfo()
+        AccomodationService.getAllIcuInfo()
         .then((resp) => {
             if(!this.toUnmount) {
                 this.setState({
@@ -57,7 +57,7 @@ class AdmitPatient extends Component {
         }).catch((err) => {
             if(!this.toUnmount) {
                 this.setState({
-                    errMess: 'Unable to fetch rooms details'
+                    errMess: 'Unable to fetch icu details'
                 })
             }
         });
@@ -173,10 +173,10 @@ class AdmitPatient extends Component {
         let staffId = this.state.staff.split(' - ');
         staffId = parseInt(staffId[0], 10);
 
-        AccomodationService.admitAPatient(this.state.selectedRoom, this.state.phone, this.state.details,
+        AccomodationService.admitIcu(this.state.selectedRoom, this.state.phone, this.state.details,
             this.state.doctor, staffId
         ).then((resp) => {
-            AccomodationService.getAllRoomsInfo()
+            AccomodationService.getAllIcuInfo()
             .then((resp) => {
                 if(!this.toUnmount) {
                     this.setState({
@@ -233,21 +233,19 @@ class AdmitPatient extends Component {
 
             const tableBody = this.state.rooms.map((room) => {
                 return(
-                    <tr key={room.roomNo}>
-                        <td>{room.roomNo}</td>
+                    <tr key={room.icuNo}>
+                        <td>{room.icuNo}</td>
                         <td>{room.floor}</td>
-                        <td>{room.beds}</td>
-                        <td>{room.max}</td>
-                        <td>{room.price}</td>
+                        <td>{(room.vacant)? "Vacant" : "Occupied"}</td>
                         <td>
                             <button className='btn btn-outline-danger btn-sm' 
-                                id={`admit-patient-${room.roomNo}`}
-                                onClick={() => this.openModal(room.roomNo)}
-                                disabled = {room.beds === 0}
+                                id={`icu-patient-${room.icuNo}`}
+                                onClick={() => this.openModal(room.icuNo)}
+                                disabled = {!room.vacant}
                             >
                                 <span className='fa fa-plus-square'></span>
                             </button>
-                            <UncontrolledTooltip target={`admit-patient-${room.roomNo}`} placement='right'>
+                            <UncontrolledTooltip target={`icu-patient-${room.icuNo}`} placement='right'>
                                 Admit Patient
                             </UncontrolledTooltip>
                         </td>
@@ -259,11 +257,9 @@ class AdmitPatient extends Component {
                 <Table responsive size='sm' bordered striped hover>
                     <thead>
                         <tr>
-                            <th>Room No.</th>
+                            <th>ICU No.</th>
                             <th>Floor</th>
-                            <th>Beds Available</th>
-                            <th>Total Beds</th>
-                            <th>Price</th>
+                            <th>State</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -305,7 +301,7 @@ class AdmitPatient extends Component {
                             </div>
                             <Form onSubmit={this.handleAdmitPatient}>
                                 <FormGroup row>
-                                    <Label htmlFor='form-room' sm={4}>Room Number:</Label>
+                                    <Label htmlFor='form-room' sm={4}>ICU Number:</Label>
                                     <Col sm={7}>
                                         <Input type='text'
                                             id = 'form-room'
@@ -391,7 +387,7 @@ class AdmitPatient extends Component {
                 </Modal>
                 <div className='row mb-2'>
                     <div className='col-12'>
-                        <h6>Select Room:</h6>
+                        <h6>Select ICU:</h6>
                     </div>
                 </div>
                 <Alert color='success' isOpen={this.state.isSuccessAlert} toggle={this.toggleAlert}>
@@ -438,4 +434,4 @@ class AdmitPatient extends Component {
     }
 }
 
-export default withRouter(AdmitPatient);
+export default withRouter(AdmitIcu);

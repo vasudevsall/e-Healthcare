@@ -144,14 +144,6 @@ class DashboardContent extends Component {
                                                 className={classnames({ active: this.state.activeTab === '2' })}
                                                 onClick={() => this.toggle('2')}
                                             >
-                                                Lab
-                                            </NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink
-                                                className={classnames({ active: this.state.activeTab === '3' })}
-                                                onClick={() => this.toggle('3')}
-                                            >
                                                 Pharmacy
                                             </NavLink>
                                         </NavItem>
@@ -193,9 +185,6 @@ class DashboardContent extends Component {
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="2">
-                                            <h4>Tab 2</h4>
-                                        </TabPane>
-                                        <TabPane tabId="3">
                                             <div className='fluid-container'>
                                                 <div className= 'row mb-3'>
                                                     <div className='col-6'>

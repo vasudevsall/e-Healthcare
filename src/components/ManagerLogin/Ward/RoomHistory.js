@@ -160,17 +160,11 @@ class RoomHistory extends Component {
     render() {
         const table = this.formTable();
         return(
-            <div className='fluid-container'>
-                <div className='row mb-2'>
-                    <div className='col-12'>
-                        <h4>Admit History</h4>
-                        <hr/>
-                    </div>
-                </div>
+            <>
 
                 <div className='row mb-5'>
                     <div className='col-12'>
-                        <div className='table-div'>
+                        <div className='table-div-300'>
                             {table}
                         </div>
                         <hr className='m-0' />
@@ -229,7 +223,7 @@ class RoomHistory extends Component {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 }

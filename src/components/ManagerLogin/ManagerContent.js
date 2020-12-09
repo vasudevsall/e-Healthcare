@@ -268,7 +268,7 @@ class ManagerContent extends Component {
                                     Total ICUs
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.usersAvailable)? this.state.accomodation.icu : <Loader/>}
+                                    {(this.state.usersAvailable)? this.state.accomodation.totalIcu : <Loader/>}
                                     <span className='fa fa-heartbeat hover-red float-right'></span>
                                 </div>
                             </div>
@@ -280,7 +280,7 @@ class ManagerContent extends Component {
                                     ICUs Vacant
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.doctorsAvailable)? this.state.accomodation.totalIcu : <Loader/>}
+                                    {(this.state.doctorsAvailable)? this.state.accomodation.icu : <Loader/>}
                                     <span className='fa fa-heartbeat hover-red float-right'></span>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@ class ManagerContent extends Component {
                                     Total Operation Theatres
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.managersAvailable)? this.state.accomodation.ot : <Loader/>}
+                                    {(this.state.managersAvailable)? this.state.accomodation.totalOt : <Loader/>}
                                     <span className='fa fa-medkit hover-yellow float-right'></span>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@ class ManagerContent extends Component {
                                     Operation Theatres Vacant
                                 </div>
                                 <div className = 'body'>
-                                    {(this.state.staffAvailable)? this.state.accomodation.totalOt : <Loader/>}
+                                    {(this.state.staffAvailable)? this.state.accomodation.ot : <Loader/>}
                                     <span className='fa fa-medkit hover-yellow float-right'></span>
                                 </div>
                             </div>

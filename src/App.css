@@ -473,6 +473,12 @@ body {
   position: relative;
   padding-bottom: 0;
 }
+.table-div-300 {
+  height: 300px;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 0;
+}
 .table-div .table-bordered {
   white-space: nowrap;
 }
@@ -515,6 +521,10 @@ body {
 
 input[type = 'submit'].form-control, button[type = 'submit'].btn {
   background-color: var(--col-prim-2);
+  color: var(--col-grey);
+}
+
+.ward-info .tab-pane a {
   color: var(--col-grey);
 }
 

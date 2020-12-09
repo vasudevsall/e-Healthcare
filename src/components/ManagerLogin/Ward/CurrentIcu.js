@@ -3,7 +3,7 @@ import AccomodationService from '../../../services/AccomodationService';
 import {withRouter, Link} from 'react-router-dom';
 import {Table, UncontrolledTooltip, Modal, ModalBody, ModalHeader, Button, Form, FormGroup, Input, Col} from 'reactstrap';
 
-class CurrentRoom extends Component {
+class CurrentIcu extends Component {
 
     constructor(props) {
         super(props);
@@ -27,11 +27,12 @@ class CurrentRoom extends Component {
         this.dateFocus = this.dateFocus.bind(this);
         this.dateBlur = this.dateBlur.bind(this);
         this.clearForm = this.clearForm.bind(this);
+        this.icuDischarge = this.icuDischarge.bind(this);
     }
 
     componentDidMount() {
         this.toUnmount = false;
-        AccomodationService.getCurrentRoomBookings()
+        AccomodationService.getICUCurrent()
         .then((resp) => {
             if(!this.toUnmount) {
                 this.setState({
@@ -140,7 +141,7 @@ class CurrentRoom extends Component {
                     return(
                         <tr key={room.id}>
                             <td>{room.id}</td>
-                            <td>{room.roomNo.roomNo}</td>
+                            <td>{room.icuNo.icuNo}</td>
                             <td>{room.user.firstName + ' ' + room.user.lastName}</td>
                             <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
                             <td>{room.staff.name}</td>
@@ -186,6 +187,10 @@ class CurrentRoom extends Component {
         }
     }
 
+    icuDischarge(event) {
+        event.preventDefault();
+    }
+
     render() {
         const table = this.formTable();
         return(
@@ -194,11 +199,9 @@ class CurrentRoom extends Component {
                     <ModalHeader toggle={this.toggleModal}>Are You Sure ?</ModalHeader>
                     <ModalBody>
                         <div className='full-flex-span mt-5'>
-                            <Link to={`/bill/${this.state.selectedId}`}
-                                className='btn btn-dark bg-danger mx-3'
-                            >
+                            <Button onClick={this.icuDischarge} className='btn btn-dark bg-danger mx-3'>
                                 Discharge
-                            </Link>
+                            </Button>
                             <Button onClick={this.toggleModal} className='bg-success mx-3'>Cancel</Button>
                         </div>
                     </ModalBody>
@@ -258,4 +261,4 @@ class CurrentRoom extends Component {
     }
 }
 
-export default withRouter(CurrentRoom);
+export default withRouter(CurrentIcu);
