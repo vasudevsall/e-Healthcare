@@ -12,6 +12,9 @@ import UserPrescriptions from './Pharmacy/UserPrescriptions';
 import SearchMedicine from './Pharmacy/SearchMedicine';
 import OrderMedicine from './Pharmacy/OrderMedicine';
 import MedOrders from './Pharmacy/MedOrders';
+import UserDetails from './User/Details';
+import UpdateInfo from './User/UpdateInfo';
+import UpdatePassword from './User/UserPassword';
 
 class LoggedInComponent extends Component {
 
@@ -73,6 +76,15 @@ class LoggedInComponent extends Component {
                         <Switch>
                             <Route exact path={`${this.props.path}`} component = {() =>
                                 <DashboardContent userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/user/details`} component = {() => 
+                                <UserDetails url = {this.props.url}/>} 
+                            />
+                            <Route exact path={`${this.props.path}/user/update`} component = {() => 
+                                <UpdateInfo url = {this.props.url}/>} 
+                            />
+                            <Route exact path={`${this.props.path}/user/password`} component = {() => 
+                                <UpdatePassword url = {this.props.url}/>} 
                             />
                             <Route exact path={`${this.props.path}/appointments/all`} component = {() => 
                                 <AllAppoinemtns url = {this.props.url}/>} 

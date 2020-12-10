@@ -147,6 +147,14 @@ class DashboardContent extends Component {
                                                 Pharmacy
                                             </NavLink>
                                         </NavItem>
+                                        <NavItem>
+                                            <NavLink
+                                                className={classnames({ active: this.state.activeTab === '4' })}
+                                                onClick={() => this.toggle('4')}
+                                            >
+                                                My Account
+                                            </NavLink>
+                                        </NavItem>
                                     </Nav>
                                     <TabContent activeTab={this.state.activeTab}>
                                         <TabPane tabId="1">
@@ -207,6 +215,29 @@ class DashboardContent extends Component {
                                                     <div className='col-6'>
                                                         <Link to={`${this.props.url}/pharmacy/search`}>
                                                             <span className='fa fa-search fa-lg'></span> Search Medicine
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </TabPane>
+                                        <TabPane tabId="4">
+                                            <div className='fluid-container'>
+                                                <div className= 'row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/user/details`}>
+                                                            <span className='fa fa-lg fa-user-circle'></span> Personal Details
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/user/update`}>
+                                                            <span className='fa fa-lg fa-pencil-square-o'></span> Update Information
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                                <div className='row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/user/password`}>
+                                                            <span className='fa fa-lg fa-key'></span> Change Password
                                                         </Link>
                                                     </div>
                                                 </div>

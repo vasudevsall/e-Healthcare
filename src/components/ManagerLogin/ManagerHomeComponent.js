@@ -19,6 +19,9 @@ import NewAppointment from './Appointment/NewAppointment';
 import Current from './Ward/Current';
 import History from './Ward/History';
 import Admit from './Ward/Admit';
+import UpdateInfo from '../loggedIn/User/UpdateInfo';
+import UpdatePassword from '../loggedIn/User/UserPassword';
+import ManagerDetails from './User/ManagerDetails';
 
 class ManagerDashboard extends Component {
 
@@ -82,6 +85,15 @@ class ManagerDashboard extends Component {
                         <Switch>
                             <Route exact path={`${this.props.path}`} component = {() =>
                                 <ManagerContent userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/user/details`} component = {() => 
+                                <ManagerDetails userInfo = {this.state} url = {this.props.url}/>} 
+                            />
+                            <Route exact path={`${this.props.path}/user/update`} component = {() => 
+                                <UpdateInfo url = {this.props.url}/>} 
+                            />
+                            <Route exact path={`${this.props.path}/user/password`} component = {() => 
+                                <UpdatePassword url = {this.props.url}/>} 
                             />
                             <Route exact path={`${this.props.path}/patient/all`} component = {() =>
                                 <AllPatients userInfo = {this.state} url={this.props.url}/>}

@@ -19,9 +19,29 @@ function SideBar(props) {
 
             <Card>
                 <CardHeader onClick={() => {toggle === 1 ? setToggle(0) : setToggle(1)}}>
-                    <span className='font-weight-bold'>Appointments</span>
+                    <span className='font-weight-bold'>My Account</span>
                 </CardHeader>
                 <Collapse isOpen={toggle === 1 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/user/details`}>
+                            <span className='fa fa-user-circle'></span> Personal Details
+                        </Link>
+                        <Link to={`${props.url}/user/update`}>
+                            <span className='fa fa-pencil-square-o'></span> Update Information
+                        </Link>
+                        <Link to={`${props.url}/user/password`}>
+                            <span className='fa fa-key'></span> Change Password
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 2 ? setToggle(0) : setToggle(2)}}>
+                    <span className='font-weight-bold'>Appointments</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 2 ? true : false}>
                     <CardBody>
                         <Link to={`${props.url}/appointments/all`}>
                             <span className='fa fa-list-alt'></span> All Appointments
@@ -43,10 +63,10 @@ function SideBar(props) {
             </Card>
 
             <Card>
-                <CardHeader onClick={() => {toggle === 2 ? setToggle(0) : setToggle(2)}}>
+                <CardHeader onClick={() => {toggle === 3 ? setToggle(0) : setToggle(3)}}>
                     <span className='font-weight-bold'>Pharmacy</span>
                 </CardHeader>
-                <Collapse isOpen={toggle === 2 ? true : false}>
+                <Collapse isOpen={toggle === 3 ? true : false}>
                     <CardBody>
                     <Link to={`${props.url}/pharmacy/prescriptions`}>
                             <span className='fa fa-user-md'></span> Your Prescriptions

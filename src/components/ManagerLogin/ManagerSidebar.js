@@ -18,6 +18,25 @@ function ManagerSideBar(props) {
             </Card>
 
             <Card>
+                <CardHeader onClick={() => {toggle === -1 ? setToggle(0) : setToggle(-1)}}>
+                    <span className='font-weight-bold'>My Account</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === -1 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/user/details`}>
+                            <span className='fa fa-user-circle'></span> Personal Details
+                        </Link>
+                        <Link to={`${props.url}/user/update`}>
+                            <span className='fa fa-pencil-square-o'></span> Update Information
+                        </Link>
+                        <Link to={`${props.url}/user/password`}>
+                            <span className='fa fa-key'></span> Change Password
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+            <Card>
                 <CardHeader onClick={() => {toggle === 1 ? setToggle(0) : setToggle(1)}}>
                     <span className='font-weight-bold'>Patient</span>
                 </CardHeader>
