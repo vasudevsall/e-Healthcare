@@ -140,7 +140,7 @@ class UpdatePassword extends Component {
                         <Col sm={4}>
                             <Input
                                 type='password'
-                                name='password' id='form-password'
+                                name='password' id='form-password-new'
                                 placeholder='New Password' onChange={this.handleChange}
                                 value={this.state.password} required
                             />
@@ -151,7 +151,7 @@ class UpdatePassword extends Component {
                         <Col sm={4}>
                             <Input
                                 type='password'
-                                name='passwordTwo' id='form-password'
+                                name='passwordTwo' id='form-password-two'
                                 placeholder='Retype Password' onChange={this.handleChange}
                                 value={this.state.passwordTwo} required
                             />

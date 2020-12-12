@@ -62,7 +62,7 @@ class Login extends Component {
         return(
             <>
                 <div className="login-back full-back"
-                    style = {{backgroundImage: `url('${process.env.PUBLIC_URL + "/images/loginPage.jpg"}')`}}></div>
+                    style = {{backgroundImage: `url('${process.env.PUBLIC_URL + "/images/loginPage.jpg"}')`}}/>
                 <div className='login-overlay full-back'>
                     <div className = 'container'>
                         <div className = 'login-complete'>
@@ -114,12 +114,21 @@ class Login extends Component {
                                             </div>
                                         </div>
 
-                                        <div className='row'>
+                                        <div className='row mb-1'>
                                             <div className='col-sm-7 offset-sm-4 col-12' style={{padding: 0}}>
                                                 <input type='submit'
                                                     className='login-submit-button'
                                                     value= 'Login'
                                                 />
+                                            </div>
+                                            <div className='col'></div>
+                                        </div>
+
+                                        <div className='row'>
+                                            <div className='col-sm-7 offset-sm-4 col-12' style={{padding: 0}}>
+                                                <Link to='/register' className='login-submit-button'>
+                                                    Sign Up
+                                                </Link>
                                             </div>
                                             <div className='col'></div>
                                         </div>

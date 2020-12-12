@@ -13,8 +13,24 @@ const USER_UPDATE_PASSWORD = REQ_URL + 'update/password';
 
 class UserService {
 
-    registerUser() {
-        return USER_REG_URL;
+    registerUser(username, password, phoneNumber, firstName, lastName, gender, dateOfBirth) {
+        const data = {
+            username: username,
+            password: password,
+            phoneNumber: phoneNumber,
+            firstName: firstName,
+            lastName: lastName,
+            gender: gender,
+            dateOfBirth: dateOfBirth
+        };
+
+        const config = {
+            method: 'post',
+            url: USER_REG_URL,
+            data: data
+        }
+
+        return axios(config);
     }
 
     loginUser(username, password) {

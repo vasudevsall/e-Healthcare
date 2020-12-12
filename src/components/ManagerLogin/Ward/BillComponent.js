@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {useParams, withRouter} from 'react-router-dom';
+// eslint-disable-next-line
 import AccomodationService from '../../../services/AccomodationService'; 
 
 class BillGeneration extends Component {

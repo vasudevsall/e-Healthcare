@@ -6,6 +6,7 @@ import Login from './LoginComponent';
 import LoggedIn from './loggedIn/LoggedInComponent';
 import ManagerHome from './ManagerLogin/ManagerHomeComponent';
 import BillComponent from './ManagerLogin/Ward/BillComponent';
+import Register from "./RegisterComponent";
 
 class Main extends Component {
 
@@ -18,6 +19,9 @@ class Main extends Component {
                     } />
                     <Route exact path = "/login" component = {() => 
                         <><Header/><Login/></>
+                    }/>
+                    <Route exact path = "/register" component = {() =>
+                        <><Header/><Register/></>
                     }/>
                     <Route path = "/welcome" component = {
                         () => <LoggedIn/>

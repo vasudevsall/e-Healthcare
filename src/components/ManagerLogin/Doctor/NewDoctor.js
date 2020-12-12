@@ -60,7 +60,6 @@ class NewDoctor extends Component {
 
         InfoService.getAllSpeciality()
         .then((resp) => {
-            console.log(resp.data);
             if(!this.toUnmout) {
                 this.setState({
                     allSpecialities: resp.data,
@@ -95,7 +94,6 @@ class NewDoctor extends Component {
     }
 
     render() {
-        console.log(this.state.allSpecialities);
         const speciality = this.state.allSpecialities.map((speciality)=> {
             return(
                 <option key={speciality.id} value={speciality.id}>{speciality.specialityName}</option>
