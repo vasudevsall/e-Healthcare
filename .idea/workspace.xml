@@ -2,19 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef6c28b5-94a4-475a-af17-1ad9e7e54e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/Register.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorHomeComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorSidebarComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/DocService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeaderComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HeaderComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LoginComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MainComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/NewDoctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/NewDoctor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Ward/BillComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Ward/BillComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loggedIn/User/UserPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loggedIn/User/UserPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loggedIn/LoggedInContentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loggedIn/LoggedInContentComponent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,6 +44,11 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git\e-HealthCare\e-healthcare\src\components\ManagerLogin" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,7 +59,8 @@
       <updated>1607752183263</updated>
       <workItem from="1607752186795" duration="618000" />
       <workItem from="1607756359360" duration="2914000" />
-      <workItem from="1607784547886" duration="15865000" />
+      <workItem from="1607784547886" duration="16063000" />
+      <workItem from="1607840603620" duration="8068000" />
     </task>
     <servers />
   </component>

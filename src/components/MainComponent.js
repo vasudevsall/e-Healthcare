@@ -7,6 +7,7 @@ import LoggedIn from './loggedIn/LoggedInComponent';
 import ManagerHome from './ManagerLogin/ManagerHomeComponent';
 import BillComponent from './ManagerLogin/Ward/BillComponent';
 import Register from "./RegisterComponent";
+import DoctorHome from "./DoctorLogin/DoctorHomeComponent";
 
 class Main extends Component {
 
@@ -28,6 +29,9 @@ class Main extends Component {
                     }/>
                     <Route path = "/manager" component = {
                         () => <ManagerHome/>
+                    }/>
+                    <Route path="/doctor" component = {
+                        () => <DoctorHome/>
                     }/>
                     <Route path={`/bill/:roomId`} component = {() =>
                         <BillComponent url={this.props.url}/>}

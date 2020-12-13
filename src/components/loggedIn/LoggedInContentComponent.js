@@ -57,7 +57,7 @@ class DashboardContent extends Component {
     renderScheduleFunction() {
         if(!this.state.ifUpcomingData) {
             return (<div className = 'full-flex-span'>
-                <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                <span className = 'fa fa-spin fa-circle-o-notch'/>
             </div>);
         }
         else {
