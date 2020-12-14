@@ -19,6 +19,7 @@ class Register extends Component {
             email: '',
             errMess: '',
             successMess: '',
+            blood: '',
             touched: {
                 firstName: false,
                 lastName: false,
@@ -111,7 +112,8 @@ class Register extends Component {
 
         if(flag === 0) {
             UserService.registerUser(this.state.username, this.state.password, this.state.phone,
-                this.state.firstName, this.state.lastName, this.state.gender, this.state.dateOfBirth
+                this.state.firstName, this.state.lastName, this.state.gender, this.state.dateOfBirth,
+                this.state.email, this.state.blood
             ).then((resp) => {
                 this.setState({
                     username: '',
@@ -124,6 +126,7 @@ class Register extends Component {
                     gender: '',
                     email: '',
                     errMess: '',
+                    blood: '',
                     touched: {
                         firstName: false,
                         lastName: false,
@@ -260,6 +263,25 @@ class Register extends Component {
                                             <FormFeedback className='offset-sm-5 register-feedback'>
                                                 {errors.email}
                                             </FormFeedback>
+                                        </div>
+
+                                        <div className={`row mb-3`}>
+                                            <label className='col-sm-4 col-12'>Blood Group</label>
+                                            <Input type='select' name='blood' id={'form-blood'}
+                                                   placeHolder={'Blood Group'} value={this.state.blood}
+                                                   onChange={this.handleChange} required
+                                                   className = 'col-12 col-sm-6 offset-sm-1'
+                                            >
+                                                <option selected disabled hidden value={''}>Select One</option>
+                                                <option value={'A+'}>A+</option>
+                                                <option value={'A-'}>A-</option>
+                                                <option value={'B+'}>B+</option>
+                                                <option value={'B-'}>B-</option>
+                                                <option value={'AB+'}>AB-</option>
+                                                <option value={'AB-'}>AB+</option>
+                                                <option value={'O+'}>O+</option>
+                                                <option value={'O-'}>O-</option>
+                                            </Input>
                                         </div>
 
                                         <div className={`row mb-3`}>

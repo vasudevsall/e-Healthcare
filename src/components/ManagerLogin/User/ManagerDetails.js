@@ -37,6 +37,14 @@ function ManagerDetails(props) {
                             <td>{props.userInfo.phoneNumber}</td>
                         </tr>
                         <tr>
+                            <th>Email Id:</th>
+                            <td>{props.userInfo.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Blood Group:</th>
+                            <td>{props.userInfo.blood}</td>
+                        </tr>
+                        <tr>
                             <th>Gender:</th>
                             <td>{printGender(props.userInfo.gender)}</td>
                         </tr>

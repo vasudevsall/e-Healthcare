@@ -74,7 +74,7 @@ class Header extends Component {
                             <span class="line"></span>
                         </div>
                     </button>
-                    <NavbarBrand className='ml-2 ml-md-5' href='/welcome'>
+                    <NavbarBrand className='ml-2 ml-md-5' href={this.props.url}>
                         <img src={process.env.PUBLIC_URL + '/images/logo-grey.png'} height ="50px" width="50px" alt='e' />
                         <label> - Healthcare</label>
                     </NavbarBrand>

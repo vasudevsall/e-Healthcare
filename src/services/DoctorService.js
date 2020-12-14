@@ -17,12 +17,14 @@ class DoctorService {
     }
 
 
-    addNewDoctor(username, first, last, gender, phone, qualification, experience, speciality, dob) {
+    addNewDoctor(username, first, last, gender, phone, email, blood, qualification, experience, speciality, dob) {
         const data = {
             username: username, 
             first: first,
             last: last,
             gender: gender,
+            email: email,
+            blood: blood,
             phone: phone,
             qualification: qualification,
             experience: experience,

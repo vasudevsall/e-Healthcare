@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {useParams, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {Collapse, Card, CardBody, CardHeader, Table} from 'reactstrap';
-import UserService from '../../../services/UserService';
+import DocService from "../../../services/DocService";
 
-class Details extends Component {
+class DoctorDetails extends Component {
 
     constructor(props) {
         super(props);
@@ -32,15 +32,15 @@ class Details extends Component {
 
     componentDidMount() {
         this.toUnmount = false;
-        UserService.getCompleteUserDetails()
-        .then((resp) => {
-            if(!this.toUnmount) {
-                this.setState({
-                    details: resp.data,
-                    detailsAvailable: true
-                });
-            }
-        }).catch((err) => {
+        DocService.getDoctorDetails()
+            .then((resp) => {
+                if(!this.toUnmount) {
+                    this.setState({
+                        details: resp.data,
+                        detailsAvailable: true
+                    });
+                }
+            }).catch((err) => {
             if(!this.toUnmount) {
                 this.setState({
                     errMess: 'Error while fetching user details, please try again'
@@ -76,45 +76,53 @@ class Details extends Component {
         if(!this.state.detailsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className = 'fa fa-spin fa-circle-o-notch'/>
                 </div>
             );
         } else {
             return(
                 <Table bordered size="sm" responsive>
                     <tbody>
-                        <tr>
-                            <th>User ID:</th>
-                            <td>{this.state.details.details.id}</td>
-                        </tr>
-                        <tr>
-                            <th>Name:</th>
-                            <td>{this.state.details.details.firstName + " " + this.state.details.details.lastName}</td>
-                        </tr>
-                        <tr>
-                            <th>Username:</th>
-                            <td>{this.state.details.details.username}</td>
-                        </tr>
-                        <tr>
-                            <th>Gender:</th>
-                            <td>{this.printGender(this.state.details.details.gender)}</td>
-                        </tr>
-                        <tr>
-                            <th>Date Of Birth:</th>
-                            <td>{this.formatDate(this.state.details.details.dateOfBirth)}</td>
-                        </tr>
-                        <tr>
-                            <th>Phone Number:</th>
-                            <td>{this.state.details.details.phoneNumber}</td>
-                        </tr>
-                        <tr>
-                            <th>Email Id:</th>
-                            <td>{this.state.details.details.email}</td>
-                        </tr>
-                        <tr>
-                            <th>Blood Group:</th>
-                            <td>{this.state.details.details.blood}</td>
-                        </tr>
+                    <tr>
+                        <th>User ID:</th>
+                        <td>{this.state.details.doctor.id}</td>
+                    </tr>
+                    <tr>
+                        <th>Name:</th>
+                        <td>{"Dr. " + this.state.details.doctor.firstName + " " + this.state.details.doctor.lastName}</td>
+                    </tr>
+                    <tr>
+                        <th>Username:</th>
+                        <td>{this.state.details.doctor.username}</td>
+                    </tr>
+                    <tr>
+                        <th>Gender:</th>
+                        <td>{this.printGender(this.state.details.doctor.gender)}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Of Birth:</th>
+                        <td>{this.state.details.doctor.dateOfBirth}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number:</th>
+                        <td>{this.state.details.doctor.phoneNumber}</td>
+                    </tr>
+                    <tr>
+                        <th>Email Id:</th>
+                        <td>{this.state.details.doctor.email}</td>
+                    </tr>
+                    <tr>
+                        <th>Blood Group:</th>
+                        <td>{this.state.details.doctor.blood}</td>
+                    </tr>
+                    <tr>
+                        <th>Qualification:</th>
+                        <td>{this.state.details.doctor.qualification}</td>
+                    </tr>
+                    <tr>
+                        <th>Experience:</th>
+                        <td>{this.state.details.doctor.experience} years</td>
+                    </tr>
                     </tbody>
                 </Table>
             );
@@ -125,7 +133,7 @@ class Details extends Component {
         if(!this.state.detailsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className = 'fa fa-spin fa-circle-o-notch'/>
                 </div>
             );
         } else {
@@ -133,31 +141,31 @@ class Details extends Component {
                 let counter = 1;
                 const tableBody = this.state.details.appointments.map((appointment) => {
                     return(
-                        <>
                         <tr key={appointment.appointmentsModel.serial}>
                             <td>{counter++}</td>
-                            <td>{`Dr. ${appointment.appointmentsModel.doctor.firstName} ${appointment.appointmentsModel.doctor.lastName}`}</td>
+                            <td>{appointment.appointmentsModel.user.firstName + ' ' + appointment.appointmentsModel.user.lastName }</td>
                             <td>{this.formatDate(appointment.appointmentsModel.date)}</td>
                             <td>{this.formatDate(appointment.appointmentsModel.date, false)}</td>
                             <td>{appointment.prescription}</td>
                             <td>{appointment.comments}</td>
                         </tr>
-                        </>
                     );
                 });
                 return(
                     <div className='details-table-div'>
                         <Table bordered size="sm" responsive>
                             <thead>
+                            <tr>
                                 <th>#</th>
-                                <th>Doctor</th>
+                                <th>Patient</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Prescription</th>
                                 <th>Comments</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {tableBody}
+                            {tableBody}
                             </tbody>
                         </Table>
                     </div>
@@ -184,27 +192,27 @@ class Details extends Component {
                 let counter = 1;
                 const tableBody = this.state.details.upcoming.map((appointment) => {
                     return(
-                        <>
                         <tr key={appointment.serial}>
                             <td>{counter++}</td>
-                            <td>{`Dr. ${appointment.doctor.firstName} ${appointment.doctor.lastName}`}</td>
+                            <td>{`${appointment.user.firstName} ${appointment.user.lastName}`}</td>
                             <td>{this.formatDate(appointment.date)}</td>
                             <td>{this.formatDate(appointment.date, false)}</td>
                         </tr>
-                        </>
                     );
                 });
                 return(
                     <div className='details-table-div'>
                         <Table bordered size="sm" responsive>
                             <thead>
+                            <tr>
                                 <th>#</th>
-                                <th>Doctor</th>
+                                <th>Patient</th>
                                 <th>Date</th>
                                 <th>Time</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {tableBody}
+                            {tableBody}
                             </tbody>
                         </Table>
                     </div>
@@ -213,60 +221,6 @@ class Details extends Component {
                 return(
                     <div className='full-flex-span'>
                         No appointments scheduled
-                    </div>
-                );
-            }
-        }
-    }
-
-    pharmacyOrders() {
-        if(!this.state.detailsAvailable) {
-            return(
-                <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
-                </div>
-            );
-        } else {
-            if(this.state.details.orders.length > 0) {
-                const tableBody = this.state.details.orders.map((order) => {
-                    return(
-                        <>
-                        <tr key={order.id}>
-                            <td>{order.id}</td>
-                            <td>{order.medId.medId.name}</td>
-                            <td>{order.medId.medId.manufacturer}</td>
-                            <td>{order.date}</td>
-                            <td>{order.medId.expiry}</td>
-                            <td>{order.quantity}</td>
-                            <td>{order.price}</td>
-                            <td>{order.delivered? "Yes" : "No"}</td>
-                        </tr>
-                        </>
-                    );
-                });
-                return(
-                    <div className='details-table-div'>
-                        <Table bordered size="sm" responsive>
-                            <thead>
-                                <th>Order Id</th>
-                                <th>Name</th>
-                                <th>Manufacturer</th>
-                                <th>Date</th>
-                                <th>Expire</th>
-                                <th>quantity</th>
-                                <th>price</th>
-                                <th>delivered</th>
-                            </thead>
-                            <tbody>
-                                {tableBody}
-                            </tbody>
-                        </Table>
-                    </div>
-                );
-            } else {
-                return(
-                    <div className='full-flex-span'>
-                        No orders placed
                     </div>
                 );
             }
@@ -285,35 +239,33 @@ class Details extends Component {
                 let count = 1;
                 const tableBody = this.state.details.room.map((room) => {
                     return(
-                        <>
                         <tr key={room.id}>
                             <td>{count++}</td>
                             <td>{room.roomNo.roomNo}</td>
-                            <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
+                            <td>{`${room.user.firstName} ${room.user.lastName}`}</td>
                             <td>{room.staff.name}</td>
                             <td>{room.details}</td>
                             <td>{room.checkin}</td>
                             <td>{room.checkout}</td>
-                            <td className={room.paid ? 'text-success' : 'text-danger'}>{room.cost}</td>
                         </tr>
-                        </>
                     );
                 });
                 return(
                     <div className='details-table-div'>
                         <Table bordered size="sm" responsive>
                             <thead>
+                            <tr>
                                 <th>#</th>
                                 <th>Room No:</th>
-                                <th>Doctor:</th>
+                                <th>Patient Name:</th>
                                 <th>Support Staff:</th>
                                 <th>Details</th>
                                 <th>Admission</th>
                                 <th>Discharge</th>
-                                <th>Bill</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {tableBody}
+                            {tableBody}
                             </tbody>
                         </Table>
                     </div>
@@ -321,7 +273,7 @@ class Details extends Component {
             } else {
                 return(
                     <div className='full-flex-span'>
-                        Never Admitted
+                        No patient admitted under doctor's care
                     </div>
                 );
             }
@@ -332,7 +284,7 @@ class Details extends Component {
         if(!this.state.detailsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className = 'fa fa-spin fa-circle-o-notch'/>
                 </div>
             );
         } else {
@@ -340,33 +292,33 @@ class Details extends Component {
                 let count = 1;
                 const tableBody = this.state.details.icu.map((room) => {
                     return(
-                        <>
                         <tr key={room.id}>
                             <td>{count++}</td>
                             <td>{room.icuNo.icuNo}</td>
-                            <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
+                            <td>{`${room.user.firstName} ${room.user.lastName}`}</td>
                             <td>{room.staff.name}</td>
                             <td>{room.details}</td>
                             <td>{room.checkin}</td>
                             <td>{room.checkout}</td>
                         </tr>
-                        </>
                     );
                 });
                 return(
                     <div className='details-table-div'>
                         <Table bordered size="sm" responsive>
                             <thead>
+                            <tr>
                                 <th>#</th>
                                 <th>ICU No:</th>
-                                <th>Doctor:</th>
+                                <th>Patient:</th>
                                 <th>Support Staff:</th>
                                 <th>Details</th>
                                 <th>Admission</th>
                                 <th>Discharge</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {tableBody}
+                            {tableBody}
                             </tbody>
                         </Table>
                     </div>
@@ -374,7 +326,7 @@ class Details extends Component {
             } else {
                 return(
                     <div className='full-flex-span'>
-                        Never admitted to an ICU
+                        No patient admitted under doctor's care
                     </div>
                 );
             }
@@ -385,7 +337,7 @@ class Details extends Component {
         if(!this.state.detailsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className = 'fa fa-spin fa-circle-o-notch'/>
                 </div>
             );
         } else {
@@ -393,33 +345,33 @@ class Details extends Component {
                 let count = 1;
                 const tableBody = this.state.details.ot.map((room) => {
                     return(
-                        <>
                         <tr key={room.id}>
                             <td>{count++}</td>
                             <td>{room.otNo.otNo}</td>
-                            <td>{`Dr. ${room.doctor.firstName} ${room.doctor.lastName}`}</td>
+                            <td>{`${room.user.firstName} ${room.user.lastName}`}</td>
                             <td>{room.staff.name}</td>
                             <td>{room.details}</td>
                             <td>{room.checkin}</td>
                             <td>{room.checkout}</td>
                         </tr>
-                        </>
                     );
                 });
                 return(
                     <div className='details-table-div'>
                         <Table bordered size="sm" responsive>
                             <thead>
+                            <tr>
                                 <th>#</th>
                                 <th>OT No:</th>
-                                <th>Doctor:</th>
+                                <th>Patient:</th>
                                 <th>Support Staff:</th>
                                 <th>Details</th>
                                 <th>Admission</th>
                                 <th>Discharge</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {tableBody}
+                            {tableBody}
                             </tbody>
                         </Table>
                     </div>
@@ -427,7 +379,7 @@ class Details extends Component {
             } else {
                 return(
                     <div className='full-flex-span'>
-                        Never admitted to an Operation Theatre
+                        No Operation history
                     </div>
                 );
             }
@@ -438,7 +390,6 @@ class Details extends Component {
         const formDetails = this.personalTable();
         const appointmentHistory = this.appointmentHistory();
         const upcomingApp = this.upcomingAppointments();
-        const pharmOrders = this.pharmacyOrders();
         const roomBookings = this.bookingRoom();
         const icuAdmissions = this.bookingIcu();
         const otAdmissions = this.bookingOt();
@@ -484,16 +435,6 @@ class Details extends Component {
                             </Collapse>
                         </Card>
                         <Card>
-                            <CardHeader onClick={() => {this.state.toggle === 4 ? this.setToggle(0) : this.setToggle(4)}}>
-                                Pharmacy Orders
-                            </CardHeader>
-                            <Collapse isOpen={this.state.toggle === 4}>
-                                <CardBody>
-                                    {pharmOrders}
-                                </CardBody>
-                            </Collapse>
-                        </Card>
-                        <Card>
                             <CardHeader onClick={() => {this.state.toggle === 5 ? this.setToggle(0) : this.setToggle(5)}}>
                                 Hospital Admissions
                             </CardHeader>
@@ -530,12 +471,4 @@ class Details extends Component {
     }
 }
 
-function UserDetails(props) {
-    let { userId } = useParams();
-
-    return(
-        <Details userId={userId} history={props.history} url={props.url} />
-    );
-}
-
-export default withRouter(UserDetails);
+export default withRouter(DoctorDetails);

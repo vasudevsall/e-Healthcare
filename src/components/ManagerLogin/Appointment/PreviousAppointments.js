@@ -124,8 +124,11 @@ class PreviousAppointments extends Component {
                         <td>{this.formatDate(appointment.date)}</td>
                         <td>{this.formatDate(appointment.date, false)}</td>
                         <td>
-                            <button className='btn btn-dark bg-info' onClick={() => this.openModal(appointment.serial)}>
-                                <span className='fa fa-info-circle fa-lg'></span>
+                            <button className='btn btn-dark bg-info btn-sm'
+                                    onClick={() => this.openModal(appointment.serial)}
+                                    disabled={!appointment.details}
+                            >
+                                <span className='fa fa-info-circle fa-lg'/>
                             </button>
                         </td>
                     </tr>
@@ -232,6 +235,7 @@ class PreviousAppointments extends Component {
                 isModalOpen: !this.state.isModalOpen
             })
         }).catch((err) => {
+            console.log(err);
             this.setState({
                 errMess: 'An error occured'
             })

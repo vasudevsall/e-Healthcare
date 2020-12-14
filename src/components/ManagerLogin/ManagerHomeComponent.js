@@ -34,6 +34,8 @@ class ManagerDashboard extends Component {
             phoneNumber: '',
             gender: '',
             dateOfBirth: '',
+            email: '',
+            blood: '',
             isReady: false
         }
     }
@@ -57,7 +59,9 @@ class ManagerDashboard extends Component {
                         name: resp.data.name,
                         phoneNumber: resp.data.phoneNumber,
                         gender: resp.data.gender,
-                        dateOfBirth: resp.data.dateOfBirth
+                        dateOfBirth: resp.data.dateOfBirth,
+                        email: resp.data.email,
+                        blood: resp.data.blood
                     });
                 }
             }).catch((err) => {
@@ -77,7 +81,7 @@ class ManagerDashboard extends Component {
     render() {
         return(
             <>
-                <Header/>
+                <Header url={this.props.url}/>
                 <div className="wrapper">
                     <ManagerSidebar userInfo = {this.state} url = {this.props.url} />
 

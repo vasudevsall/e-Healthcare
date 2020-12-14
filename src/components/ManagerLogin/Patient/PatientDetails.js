@@ -107,6 +107,14 @@ class Details extends Component {
                             <th>Phone Number:</th>
                             <td>{this.state.details.details.phoneNumber}</td>
                         </tr>
+                        <tr>
+                            <th>Email Id:</th>
+                            <td>{this.state.details.details.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Blood Group:</th>
+                            <td>{this.state.details.details.blood}</td>
+                        </tr>
                     </tbody>
                 </Table>
             );
@@ -117,7 +125,7 @@ class Details extends Component {
         if(!this.state.detailsAvailable) {
             return(
                 <div className='full-flex-span'>
-                    <span className = 'fa fa-spin fa-circle-o-notch'></span>
+                    <span className = 'fa fa-spin fa-circle-o-notch'/>
                 </div>
             );
         } else {

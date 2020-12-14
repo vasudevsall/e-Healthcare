@@ -27,12 +27,14 @@ class PatientService {
         return axios(config);
     }
 
-    addNewPatient(username, first, last, phone, gender, date) {
+    addNewPatient(username, first, last, phone, email, blood, gender, date) {
         const data = {
             "username": username,
             "firstName": first,
             "lastName": last,
             "phoneNumber": phone,
+            "email": email,
+            "blood": blood,
             "gender": gender,
             "dateOfBirth": date
         };

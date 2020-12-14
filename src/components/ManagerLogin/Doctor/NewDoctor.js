@@ -14,6 +14,8 @@ class NewDoctor extends Component {
             lastName: '',
             username: '',
             phone: '',
+            email: '',
+            blood: '',
             gender: '',
             dob: '',
             qualification: '',
@@ -30,7 +32,8 @@ class NewDoctor extends Component {
     handleSubmit(event) {
         event.preventDefault();
         DoctorService.addNewDoctor(this.state.username, this.state.firstName, this.state.lastName, this.state.gender,
-            this.state.phone, this.state.qualification, this.state.experience, this.state.speciality, this.state.dob
+            this.state.phone, this.state.email, this.state.blood,
+            this.state.qualification, this.state.experience, this.state.speciality, this.state.dob
         ).then((resp) => {
             this.setState({
                 successMess: resp.data,
@@ -43,7 +46,9 @@ class NewDoctor extends Component {
                 phone: '',
                 qualification: '',
                 experience: '',
-                speciality: 0
+                speciality: 0,
+                email: '',
+                blood: ''
             });
         }).catch((err) => {
             console.log(err);
@@ -155,6 +160,35 @@ class NewDoctor extends Component {
                                 onChange = {this.handleChange}
                                 required
                             />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label htmlFor='form-mail' sm={4}>Email:</Label>
+                        <Col sm={4}>
+                            <Input type='text' name='email' id='form-mail'
+                                   placeholder='Email' value={this.state.email}
+                                   onChange = {this.handleChange}
+                                   required
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label htmlFor='form-blood' sm={4}>Blood Group:</Label>
+                        <Col sm={4}>
+                            <Input type='select' name='blood' id={'form-blood'}
+                                   placeHolder={'Blood Group'} value={this.state.blood}
+                                   onChange={this.handleChange} required
+                            >
+                                <option selected disabled hidden value={''}>Select One</option>
+                                <option value={'A+'}>A+</option>
+                                <option value={'A-'}>A-</option>
+                                <option value={'B+'}>B+</option>
+                                <option value={'B-'}>B-</option>
+                                <option value={'AB+'}>AB-</option>
+                                <option value={'AB-'}>AB+</option>
+                                <option value={'O+'}>O+</option>
+                                <option value={'O-'}>O-</option>
+                            </Input>
                         </Col>
                     </FormGroup>
                     <FormGroup row>

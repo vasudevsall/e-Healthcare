@@ -13,6 +13,8 @@ class UpdateInfo extends Component {
             firstName: '',
             lastName: '',
             phoneNumber: '',
+            email: '',
+            blood: '',
             gender: '',
             dateOfBirth: '',
             password: '',
@@ -46,7 +48,9 @@ class UpdateInfo extends Component {
                     lastName: name[name.length-1],
                     phoneNumber: resp.data.phoneNumber,
                     gender: resp.data.gender,
-                    dateOfBirth: date[2] + "-" + date[1] + "-" + date[0]
+                    dateOfBirth: date[2] + "-" + date[1] + "-" + date[0],
+                    email: resp.data.email,
+                    blood: resp.data.blood
                 })
             }
         }).catch((err) => {
@@ -72,7 +76,8 @@ class UpdateInfo extends Component {
     handleModalSubmit(event) {
         event.preventDefault();
         UserService.updateUserDetails(this.state.username, this.state.password, this.state.firstName,
-            this.state.lastName, this.state.phoneNumber, this.state.gender, this.state.dateOfBirth
+            this.state.lastName, this.state.phoneNumber, this.state.email, this.state.blood,
+            this.state.gender, this.state.dateOfBirth
         ).then((resp) => {
             UserService.getUserDetails()
             .then((resp) => {
@@ -92,7 +97,9 @@ class UpdateInfo extends Component {
                     dateOfBirth: date[2] + "-" + date[1] + "-" + date[0],
                     isModalOpen: false,
                     successAlert: true,
-                    password: ''
+                    password: '',
+                    email: resp.data.email,
+                    blood: resp.data.blood
                 })
             }).catch((err) => {
                 this.setState({
@@ -224,6 +231,35 @@ class UpdateInfo extends Component {
                                         onChange={this.handleChange}
                                         required
                                     />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label htmlFor='form-mail' sm={4}>Email:</Label>
+                                <Col sm={4}>
+                                    <Input type='text' name='email' id='form-mail'
+                                           placeholder='Email' value={this.state.email}
+                                           onChange = {this.handleChange}
+                                           required
+                                    />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label htmlFor='form-blood' sm={4}>Blood Group:</Label>
+                                <Col sm={4}>
+                                    <Input type='select' name='blood' id={'form-blood'}
+                                           placeHolder={'Blood Group'} value={this.state.blood}
+                                           onChange={this.handleChange} required
+                                    >
+                                        <option selected disabled hidden value={''}>Select One</option>
+                                        <option value={'A+'}>A+</option>
+                                        <option value={'A-'}>A-</option>
+                                        <option value={'B+'}>B+</option>
+                                        <option value={'B-'}>B-</option>
+                                        <option value={'AB+'}>AB-</option>
+                                        <option value={'AB-'}>AB+</option>
+                                        <option value={'O+'}>O+</option>
+                                        <option value={'O-'}>O-</option>
+                                    </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>

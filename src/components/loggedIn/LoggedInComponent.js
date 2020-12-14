@@ -68,7 +68,7 @@ class LoggedInComponent extends Component {
     render() {
         return(
             <>
-                <Header/>
+                <Header url = {this.props.url}/>
                 <div className="wrapper">
                     <SideBar userInfo = {this.state} url = {this.props.url}/>
 

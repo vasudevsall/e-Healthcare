@@ -73,7 +73,7 @@ class DoctorContent extends Component {
             });
             if(this.state.upcoming.length > 0) {
                 return(
-                    <Table>
+                    <Table size={'sm'}>
                         <thead>
                         <tr>
                             <th>#</th>

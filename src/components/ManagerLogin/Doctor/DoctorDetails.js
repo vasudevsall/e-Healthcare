@@ -108,6 +108,14 @@ class Details extends Component {
                             <td>{this.state.details.doctor.phoneNumber}</td>
                         </tr>
                         <tr>
+                            <th>Email Id:</th>
+                            <td>{this.state.details.doctor.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Blood Group:</th>
+                            <td>{this.state.details.doctor.blood}</td>
+                        </tr>
+                        <tr>
                             <th>Qualification:</th>
                             <td>{this.state.details.doctor.qualification}</td>
                         </tr>

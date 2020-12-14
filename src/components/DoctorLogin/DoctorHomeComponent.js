@@ -4,7 +4,11 @@ import Header from '../loggedIn/LoginHeaderComponent';
 import UserService from "../../services/UserService";
 import DoctorSidebar from "./DoctorSidebarComponent";
 import DoctorContent from "./DoctorContent";
-import ManagerContent from "../ManagerLogin/ManagerContent";
+import DoctorDetails from "./User/Details";
+import UpdateInfo from "../loggedIn/User/UpdateInfo";
+import UpdatePassword from "../loggedIn/User/UserPassword";
+import AppointmentHistory from "./Appointments/AppointmentHistory";
+import UpcomingAppointments from "./Appointments/UpcomingAppointments";
 
 class DoctorDashboard extends Component {
 
@@ -60,14 +64,29 @@ class DoctorDashboard extends Component {
     render() {
         return(
             <>
-                <Header/>
+                <Header url={this.props.url}/>
                 <div className='wrapper'>
                     <DoctorSidebar userInfo={this.state} url={this.props.url} />
 
                     <div id="content">
                         <Switch>
-                            <Route path={`${this.props.path}`} component={() =>
+                            <Route exact path={`${this.props.path}`} component={() =>
                                 <DoctorContent userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/user/details`} component={() =>
+                                <DoctorDetails userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/user/update`} component={() =>
+                                <UpdateInfo userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/user/password`} component={() =>
+                                <UpdatePassword userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/appointment/history`} component={() =>
+                                <AppointmentHistory userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/appointment/upcoming`} component={() =>
+                                <UpcomingAppointments userInfo = {this.state} url={this.props.url}/>}
                             />
                             <Redirect to={`${this.props.path}`}/>
                         </Switch>
