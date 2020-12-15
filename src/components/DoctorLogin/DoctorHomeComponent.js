@@ -9,6 +9,8 @@ import UpdateInfo from "../loggedIn/User/UpdateInfo";
 import UpdatePassword from "../loggedIn/User/UserPassword";
 import AppointmentHistory from "./Appointments/AppointmentHistory";
 import UpcomingAppointments from "./Appointments/UpcomingAppointments";
+import MySchedule from "./Schedule/MySchedule";
+import UpdateSchedule from "./Schedule/UpdateSchedule";
 
 class DoctorDashboard extends Component {
 
@@ -87,6 +89,12 @@ class DoctorDashboard extends Component {
                             />
                             <Route exact path={`${this.props.path}/appointment/upcoming`} component={() =>
                                 <UpcomingAppointments userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/schedule`} component={() =>
+                                <MySchedule userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/schedule/update`} component={() =>
+                                <UpdateSchedule userInfo = {this.state} url={this.props.url}/>}
                             />
                             <Redirect to={`${this.props.path}`}/>
                         </Switch>

@@ -5,6 +5,7 @@ const COMPLETE_DETAILS = REQ_URL + 'doctor/details'
 const UPCOMING_APPOINTMENTS = REQ_URL + 'doctor/appointments/upcoming';
 const PREVIOUS_APPOINTMENTS = REQ_URL + 'doctor/appointments/previous';
 const APPOINTMENTS_DETAILS = REQ_URL + 'doctor/appointments/details';
+const SCHEDULE = REQ_URL + 'doctor/schedule';
 
 class DocService {
 
@@ -50,6 +51,27 @@ class DocService {
             method: 'post',
             withCredentials: true,
             url: APPOINTMENTS_DETAILS,
+            data: data
+        }
+
+        return axios(config);
+    }
+
+    getSchedule() {
+        const config = {
+            method: 'get',
+            withCredentials: true,
+            url: SCHEDULE
+        }
+
+        return axios(config);
+    }
+
+    postSchedule(data) {
+        const config = {
+            method: 'post',
+            withCredentials: true,
+            url: SCHEDULE,
             data: data
         }
 

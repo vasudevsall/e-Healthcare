@@ -2,27 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef6c28b5-94a4-475a-af17-1ad9e7e54e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/Appointments/AppointmentHistory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/Appointments/UpcomingAppointments.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/User/Details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/Schedule/MySchedule.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DoctorLogin/Schedule/UpdateSchedule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorHomeComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorHomeComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorSidebarComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DoctorLogin/DoctorSidebarComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Appointment/PreviousAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Appointment/PreviousAppointments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/DoctorDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/DoctorDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/NewDoctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Doctor/NewDoctor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/ManagerHomeComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/ManagerHomeComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Patient/NewPatient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Patient/NewPatient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/Patient/PatientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/Patient/PatientDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManagerLogin/User/ManagerDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManagerLogin/User/ManagerDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegisterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegisterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loggedIn/User/Details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loggedIn/User/Details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loggedIn/User/UpdateInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loggedIn/User/UpdateInfo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/DocService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DocService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/DoctorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DoctorService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PatientService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PatientService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/UserService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +59,8 @@
       <workItem from="1607840603620" duration="8305000" />
       <workItem from="1607877172247" duration="5459000" />
       <workItem from="1607923652035" duration="1438000" />
-      <workItem from="1607940254776" duration="17963000" />
+      <workItem from="1607940254776" duration="18341000" />
+      <workItem from="1608028037844" duration="15563000" />
     </task>
     <servers />
   </component>
