@@ -6,6 +6,7 @@ const UPCOMING_APPOINTMENTS = REQ_URL + 'doctor/appointments/upcoming';
 const PREVIOUS_APPOINTMENTS = REQ_URL + 'doctor/appointments/previous';
 const APPOINTMENTS_DETAILS = REQ_URL + 'doctor/appointments/details';
 const SCHEDULE = REQ_URL + 'doctor/schedule';
+const USER_DETAILS = REQ_URL + 'doctor/user/details';
 
 class DocService {
 
@@ -73,6 +74,16 @@ class DocService {
             withCredentials: true,
             url: SCHEDULE,
             data: data
+        }
+
+        return axios(config);
+    }
+
+    getPatientDetails(phone) {
+        const config = {
+            method: 'get',
+            withCredentials: true,
+            url: USER_DETAILS + '?phone=' + phone
         }
 
         return axios(config);

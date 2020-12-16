@@ -67,6 +67,12 @@ function DoctorSidebar(props) {
                     </CardBody>
                 </Collapse>
             </Card>
+
+            <Card>
+                <CardHeader onClick={() => props.history.push(`${props.url}/patient/details`)}>
+                    <span className={'font-weight-bold'}>Patient Details</span>
+                </CardHeader>
+            </Card>
         </div>
     );
 }

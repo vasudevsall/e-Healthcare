@@ -68,10 +68,10 @@ class Header extends Component {
             <>
                 <Navbar className='login-nav' fixed='top' light={true}>
                     <button className='sidebar-toggler' onClick={this.toggleSideBar}>
-                        <div class={`hamburger ${(this.state.isSideBarOpen)?'is-active':''}`}>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
+                        <div className={`hamburger ${(this.state.isSideBarOpen)?'is-active':''}`}>
+                            <span className="line"/>
+                            <span className="line"/>
+                            <span className="line"/>
                         </div>
                     </button>
                     <NavbarBrand className='ml-2 ml-md-5' href={this.props.url}>
@@ -83,14 +83,14 @@ class Header extends Component {
                         <NavItem className = 'mr-0'>
                             <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toggleDropdown}>
                                 <DropdownToggle caret>
-                                    <span className='fa fa-user-circle fa-lg'></span>
+                                    <span className='fa fa-user-circle fa-lg'/>
                                 </DropdownToggle>
                                 <DropdownMenu>
-                                    <DropdownItem>
+                                    <DropdownItem onClick={() => this.props.history.push(`${this.props.url}/user/details`)}>
                                         {this.state.username}
                                     </DropdownItem>
                                     <DropdownItem onClick={this.logoutService}>
-                                        Logout <span className="fa fa-sign-out"></span>
+                                        Logout <span className="fa fa-sign-out"/>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>

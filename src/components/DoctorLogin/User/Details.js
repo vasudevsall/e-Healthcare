@@ -398,7 +398,7 @@ class DoctorDetails extends Component {
             <div className='fluid-container'>
                 <div className='row mb-2'>
                     <div className='col-12'>
-                        <h4>Patient Details</h4>
+                        <h4>Doctor Details</h4>
                         <hr/>
                     </div>
                 </div>
