@@ -140,7 +140,7 @@ class UpdateInfo extends Component {
 
     render() {
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <Modal centered isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Enter Your Password to Continue!</ModalHeader>
                     <ModalBody>

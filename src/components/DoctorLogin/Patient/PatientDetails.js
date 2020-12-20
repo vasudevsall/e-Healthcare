@@ -550,7 +550,7 @@ class PatientDetails extends Component {
     render() {
         const details = this.formDetailsData();
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <div className='row mb-2'>
                     <div className='col-12'>
                         <h4>Search Patient Details</h4>

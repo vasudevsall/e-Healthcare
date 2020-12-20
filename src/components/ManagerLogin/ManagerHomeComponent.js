@@ -22,6 +22,10 @@ import Admit from './Ward/Admit';
 import UpdateInfo from '../loggedIn/User/UpdateInfo';
 import UpdatePassword from '../loggedIn/User/UserPassword';
 import ManagerDetails from './User/ManagerDetails';
+import ItemsInStock from "./Stock/ItemsInStock";
+import AllStock from "./Stock/AllStock";
+import AddItem from "./Stock/AddItem";
+import AddToStock from "./Stock/AddToStock";
 
 class ManagerDashboard extends Component {
 
@@ -143,6 +147,18 @@ class ManagerDashboard extends Component {
                             />
                             <Route path={`${this.props.path}/room/admit`} component = {() =>
                                 <Admit url={this.props.url}/>}
+                            />
+                            <Route path={`${this.props.path}/stock/current`} component = {() =>
+                                <ItemsInStock url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/stock`} component = {() =>
+                                <AllStock url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/stock/add`} component = {() =>
+                                <AddItem url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/stock/inventory`} component = {() =>
+                                <AddToStock url={this.props.url}/>}
                             />
                             <Redirect to={this.props.path} />
                         </Switch>

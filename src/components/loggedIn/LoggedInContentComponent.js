@@ -115,7 +115,7 @@ class DashboardContent extends Component {
 
         return(
             <>
-                <div className='fluid-container'>
+                <div className='container-fluid'>
                     <div className='row mb-2'>
                         <div className='col-12'>
                             <h4>Dashboard</h4>
@@ -158,7 +158,7 @@ class DashboardContent extends Component {
                                     </Nav>
                                     <TabContent activeTab={this.state.activeTab}>
                                         <TabPane tabId="1">
-                                            <div className='fluid-container'>
+                                            <div className='container-fluid'>
                                                 <div className= 'row mb-3'>
                                                     <div className='col-6'>
                                                         <Link to={`${this.props.url}/appointments/all`}>
@@ -193,7 +193,7 @@ class DashboardContent extends Component {
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="2">
-                                            <div className='fluid-container'>
+                                            <div className='container-fluid'>
                                                 <div className= 'row mb-3'>
                                                     <div className='col-6'>
                                                         <Link to={`${this.props.url}/pharmacy/prescriptions`}>
@@ -221,7 +221,7 @@ class DashboardContent extends Component {
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="4">
-                                            <div className='fluid-container'>
+                                            <div className='container-fluid'>
                                                 <div className= 'row mb-3'>
                                                     <div className='col-6'>
                                                         <Link to={`${this.props.url}/user/details`}>

@@ -153,7 +153,7 @@ class ManagerContent extends Component {
     render() {
         return(
             <>
-                <div className='fluid-container'>
+                <div className='container-fluid'>
                     <div className='row mb-2'>
                         <div className='col-12'>
                             <h4>Dashboard</h4>

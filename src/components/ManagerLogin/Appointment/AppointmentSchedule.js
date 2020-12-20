@@ -206,7 +206,7 @@ class AppointmentSchedule extends Component {
         const table = this.formTable();
 
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Are you Sure ?</ModalHeader>
                     <ModalBody>

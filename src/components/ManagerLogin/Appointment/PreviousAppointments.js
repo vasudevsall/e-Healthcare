@@ -247,7 +247,7 @@ class PreviousAppointments extends Component {
         const modal = this.formModal();
 
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Appointment Details</ModalHeader>
                     <ModalBody>

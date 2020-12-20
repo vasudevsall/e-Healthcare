@@ -181,7 +181,7 @@ class UpcomingAppointments extends Component {
         const table = this.formTable();
 
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <div className='row mb-2'>
                     <div className='col-12'>
                         <h4>Upcoming Appointments</h4>

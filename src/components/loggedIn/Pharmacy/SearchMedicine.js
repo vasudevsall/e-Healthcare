@@ -96,7 +96,7 @@ class SearchMedicine extends Component {
         const formTable = this.makeTable();
 
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <div className='row mb-2'>
                     <div className='col-12'>
                         <h4>Search Pharmacy</h4>

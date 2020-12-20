@@ -121,6 +121,28 @@ function ManagerSideBar(props) {
                     </CardBody>
                 </Collapse>
             </Card>
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 6 ? setToggle(0) : setToggle(6)}}>
+                    <span className='font-weight-bold'>Inventory</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 6 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/stock/current`}>
+                            <span className='fa fa-cube'></span> Items in Stock
+                        </Link>
+                        <Link to={`${props.url}/stock`}>
+                            <span className='fa fa-cubes'></span> All Stock
+                        </Link>
+                        <Link to={`${props.url}/stock/add`}>
+                            <span className='fa fa-plus'></span> Add Item
+                        </Link>
+                        <Link to={`${props.url}/stock/inventory`}>
+                            <span className={'fa fa-ambulance'}></span> Add Supplies
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
         </div>
     );
 }

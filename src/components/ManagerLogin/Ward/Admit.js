@@ -15,7 +15,7 @@ const Admit = (props) => {
     }
 
     return(
-        <div className='fluid-container ward-info'>
+        <div className='container-fluid ward-info'>
             <div className='row mb-2'>
                 <div className='col-12'>
                     <h4>Patients Admitted</h4>

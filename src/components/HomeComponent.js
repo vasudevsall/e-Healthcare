@@ -107,7 +107,7 @@ function Home(props){
 
                     <div className='row features mb-5'>
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='col-1'><span className='fa fa-calendar fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Appointment Management</label></div>
@@ -115,7 +115,7 @@ function Home(props){
                             </div>
                         </div>
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-1 col-1'><span className='fa fa-line-chart fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Detailed Analysis</label></div>
@@ -123,7 +123,7 @@ function Home(props){
                             </div>
                         </div>
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-xl-1 col-1'><span className='fa fa-flask fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Laboratory Management</label></div>
@@ -132,7 +132,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-1 offset-xl-0 col-1'><span className='fa fa-medkit fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Patient Management</label></div>
@@ -141,7 +141,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-0 offset-xl-1 col-1'><span className='fa fa-desktop fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Interactive Dashboard</label></div>
@@ -150,7 +150,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-1 offset-xl-1 col-1'><span className='fa fa-comments fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Online Consultation</label></div>
@@ -159,7 +159,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-0 offset-xl-0 col-1'><span className='fa fa-floppy-o fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Completely Paperless</label></div>
@@ -168,7 +168,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-1 offset-xl-1 col-1'><span className='fa fa-wifi fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Access anywhere</label></div>
@@ -177,7 +177,7 @@ function Home(props){
                         </div>
 
                         <div className='col-12 col-sm-6 col-xl-4 mb-5 d-block d-sm-none d-xl-block'>
-                            <div className='fluid-container'>
+                            <div className='container-fluid'>
                                 <div className='row feature-row'>
                                     <div className='offset-sm-1 offset-xl-1 col-1'><span className='fa fa-lock fa-2x'></span></div>
                                     <div className='offset-1 col'><label> Secure System</label></div>

@@ -269,7 +269,7 @@ class MedOrders extends Component {
         const table = this.formTable();
         const formModal = this.modalData();
         return(
-            <div className='fluid-container'>
+            <div className='container-fluid'>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Order Details</ModalHeader>
                     <ModalBody>
