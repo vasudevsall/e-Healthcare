@@ -178,13 +178,6 @@ class DashboardContent extends Component {
                                                         </Link>
                                                     </div>
                                                     <div className='col-6'>
-                                                        <Link to={`${this.props.url}/online`}>
-                                                            <span className='fa fa-wifi fa-lg'></span> Online Consultation
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                                <div className='row'>
-                                                    <div className='col-6'>
                                                         <Link to={`${this.props.url}/appointments/schedule`}>
                                                             <span className='fa fa-plus-square-o fa-lg'></span> Schedule New
                                                         </Link>

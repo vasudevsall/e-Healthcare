@@ -55,18 +55,34 @@ function SideBar(props) {
                         <Link to={`${props.url}/appointments/schedule`}>
                             <span className='fa fa-plus-square-o'></span> Schedule New
                         </Link>
-                        <Link to={`${props.url}/online`}>
-                            <span className='fa fa-wifi'></span> Online Consultation
-                        </Link>
                     </CardBody>
                 </Collapse>
             </Card>
 
             <Card>
                 <CardHeader onClick={() => {toggle === 3 ? setToggle(0) : setToggle(3)}}>
-                    <span className='font-weight-bold'>Pharmacy</span>
+                    <span className='font-weight-bold'>Online Consultation</span>
                 </CardHeader>
                 <Collapse isOpen={toggle === 3 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/consult/new`}>
+                            <span className='fa fa-stethoscope'/> New Consultation
+                        </Link>
+                        <Link to={`${props.url}/consult/current`}>
+                            <span className='fa fa-wifi'></span> Ongoing Consultation
+                        </Link>
+                        <Link to={`${props.url}/consult/history`}>
+                            <span className='fa fa-history'></span> Past Consultation
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+            <Card>
+                <CardHeader onClick={() => {toggle === 4 ? setToggle(0) : setToggle(4)}}>
+                    <span className='font-weight-bold'>Pharmacy</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 4 ? true : false}>
                     <CardBody>
                     <Link to={`${props.url}/pharmacy/prescriptions`}>
                             <span className='fa fa-user-md'></span> Your Prescriptions

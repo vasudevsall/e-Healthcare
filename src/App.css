@@ -120,12 +120,18 @@ body {
   background-color: var(--col-grey);
   font-family: 'Montserrat', sans-serif;
 }
+.home-body.contact {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-.home-body h3 {
+.home-body h3, .home-body h2 {
   font-size: 24px;
   text-align: center;
   color: var(--col-prim);
   font-weight: bold;
+}
+.home-body h2 {
+  font-size: 28px;
 }
 
 .home-body .media img {
@@ -710,6 +716,103 @@ input[type = 'submit'].form-control, button[type = 'submit'].btn {
   filter: blur(0.3px);
 }
 
+/* Chat */
+.chat-box {
+  height: 350px;
+  border: 1px solid var(--col-prim);
+  box-shadow: 0 0 1px 0 var(--col-prim);
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-area {
+  height: 280px;
+  border-bottom: 1px solid var(--col-prim);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  border-radius: 10px 10px 0 0;
+  background-color: #efefef;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%2316697a' fill-opacity='0.12'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.chat-form {
+  height: 70px;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+.chat-form form {
+  height: 100%;
+}
+.chat-form textarea {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 0 0 10px;
+  resize: none;
+}
+.chat-form button {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 0 10px 0;
+}
+
+.message-box {
+  padding: 10px 10px 20px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  position: relative;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.message-box.right {
+  position: relative;
+  justify-content: flex-end;
+  right: 20px;
+  background-color: var(--col-ter-2);
+  border-radius: 10px 0 10px 10px;
+}
+.message-box.right::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 7px solid transparent;
+  border-left: 10px solid var(--col-ter-2);
+  position: absolute;
+  right: -10px;
+  top: 0;
+}
+.message-box.left {
+  left: 20px;
+  background-color: var(--col-prim-2);
+  border-radius: 0 10px 10px 10px;
+}
+.message-box.left::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid var(--col-prim-2);
+  position: absolute;
+  left: -10px;
+  top: 0;
+}
+
+.message-box label {
+  position: absolute;
+  bottom: -8px;
+  font-size: 10px;
+  right: 10px;
+  color: #c6c6c6;
+}
 /* Support Classes */
 .width-100 {
   min-height: 10px;

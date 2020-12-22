@@ -69,6 +69,22 @@ function DoctorSidebar(props) {
             </Card>
 
             <Card>
+                <CardHeader onClick={() => {toggle === 4 ? setToggle(0) : setToggle(4)}}>
+                    <span className='font-weight-bold'>Online Consultation</span>
+                </CardHeader>
+                <Collapse isOpen={toggle === 4 ? true : false}>
+                    <CardBody>
+                        <Link to={`${props.url}/consult/current`}>
+                            <span className='fa fa-wifi'></span> Ongoing Consultation
+                        </Link>
+                        <Link to={`${props.url}/consult/history`}>
+                            <span className='fa fa-history'></span> Past Consultation
+                        </Link>
+                    </CardBody>
+                </Collapse>
+            </Card>
+
+            <Card>
                 <CardHeader onClick={() => props.history.push(`${props.url}/patient/details`)}>
                     <span className={'font-weight-bold'}>Patient Details</span>
                 </CardHeader>

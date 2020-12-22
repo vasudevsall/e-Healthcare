@@ -12,6 +12,8 @@ import UpcomingAppointments from "./Appointments/UpcomingAppointments";
 import MySchedule from "./Schedule/MySchedule";
 import UpdateSchedule from "./Schedule/UpdateSchedule";
 import PatientDetails from "./Patient/PatientDetails";
+import PreviousOnline from "../loggedIn/Online Consultation/PreviousOnline";
+import Chat from "../loggedIn/Online Consultation/OnlineChat";
 
 class DoctorDashboard extends Component {
 
@@ -99,6 +101,15 @@ class DoctorDashboard extends Component {
                             />
                             <Route exact path={`${this.props.path}/patient/details`} component={() =>
                                 <PatientDetails userInfo = {this.state} url={this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/consult/history`} component = {() =>
+                                <PreviousOnline url = {this.props.url}  past={true} doctor={true}/>}
+                            />
+                            <Route exact path={`${this.props.path}/consult/current`} component = {() =>
+                                <PreviousOnline url = {this.props.url} past={false} doctor={true}/>}
+                            />
+                            <Route path={`${this.props.path}/consult/chat/:consultId`} component={() =>
+                                <Chat url={this.props.url}/>}
                             />
                             <Redirect to={`${this.props.path}`}/>
                         </Switch>

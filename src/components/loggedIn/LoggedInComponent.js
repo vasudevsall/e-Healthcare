@@ -15,6 +15,9 @@ import MedOrders from './Pharmacy/MedOrders';
 import UserDetails from './User/Details';
 import UpdateInfo from './User/UpdateInfo';
 import UpdatePassword from './User/UserPassword';
+import PreviousOnline from "./Online Consultation/PreviousOnline";
+import NewConsultation from "./Online Consultation/NewConsult";
+import Chat from "./Online Consultation/OnlineChat";
 
 class LoggedInComponent extends Component {
 
@@ -109,6 +112,18 @@ class LoggedInComponent extends Component {
                             />
                             <Route exact path={`${this.props.path}/pharmacy/orders`} component = {() =>
                                 <MedOrders url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/consult/history`} component = {() =>
+                                <PreviousOnline url = {this.props.url}  past={true} doctor={false}/>}
+                            />
+                            <Route exact path={`${this.props.path}/consult/new`} component = {() =>
+                                <NewConsultation url = {this.props.url}/>}
+                            />
+                            <Route exact path={`${this.props.path}/consult/current`} component = {() =>
+                                <PreviousOnline url = {this.props.url} past={false} doctor={false}/>}
+                            />
+                            <Route path={`${this.props.path}/consult/chat/:consultId`} component={() =>
+                                <Chat url={this.props.url}/>}
                             />
                             <Redirect to={this.props.path}/>
                         </Switch>

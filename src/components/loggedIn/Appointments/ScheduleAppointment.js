@@ -84,8 +84,6 @@ class ScheduleAppointment extends Component {
                     })
                 })
         }
-
-        console.log(this.state);
     }
 
     componentDidMount() {

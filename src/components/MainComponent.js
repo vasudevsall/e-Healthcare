@@ -8,6 +8,8 @@ import ManagerHome from './ManagerLogin/ManagerHomeComponent';
 import BillComponent from './ManagerLogin/Ward/BillComponent';
 import Register from "./RegisterComponent";
 import DoctorHome from "./DoctorLogin/DoctorHomeComponent";
+import About from './AboutComponent';
+import Contact from "./ContactComponent";
 
 class Main extends Component {
 
@@ -23,6 +25,12 @@ class Main extends Component {
                     }/>
                     <Route exact path = "/register" component = {() =>
                         <><Header/><Register/></>
+                    }/>
+                    <Route exact path = "/about" component = {() =>
+                        <><Header/><About/></>
+                    }/>
+                    <Route exact path = "/contact" component = {() =>
+                        <><Header/><Contact/></>
                     }/>
                     <Route path = "/welcome" component = {
                         () => <LoggedIn/>
