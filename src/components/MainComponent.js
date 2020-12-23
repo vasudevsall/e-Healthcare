@@ -10,6 +10,7 @@ import Register from "./RegisterComponent";
 import DoctorHome from "./DoctorLogin/DoctorHomeComponent";
 import About from './AboutComponent';
 import Contact from "./ContactComponent";
+import Forgot from "./ForgotComponent";
 
 class Main extends Component {
 
@@ -31,6 +32,9 @@ class Main extends Component {
                     }/>
                     <Route exact path = "/contact" component = {() =>
                         <><Header/><Contact/></>
+                    }/>
+                    <Route exact path = "/forgot" component = {() =>
+                        <><Header/><Forgot/></>
                     }/>
                     <Route path = "/welcome" component = {
                         () => <LoggedIn/>

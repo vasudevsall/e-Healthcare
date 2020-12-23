@@ -10,6 +10,7 @@ const USER_DETAILS = REQ_URL + "login-success";
 const COMPLETE_DETAILS = REQ_URL + "user/details";
 const USER_UPDATE = REQ_URL + 'update';
 const USER_UPDATE_PASSWORD = REQ_URL + 'update/password';
+const USER_FORGOT_PASS = REQ_URL + 'forgot';
 
 class UserService {
 
@@ -130,6 +131,25 @@ class UserService {
             url: USER_UPDATE_PASSWORD,
             data: data
         };
+
+        return axios(config);
+    }
+
+    forgotPassword(username, phone, email, blood, password) {
+        const data = {
+            username: username,
+            phone: phone,
+            email: email,
+            blood: blood,
+            password: password
+        }
+
+        const config = {
+            method: 'post',
+            withCredentials: true,
+            url: USER_FORGOT_PASS,
+            data: data
+        }
 
         return axios(config);
     }

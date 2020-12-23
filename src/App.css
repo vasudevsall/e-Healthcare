@@ -509,6 +509,7 @@ a.login-submit-button:hover {
   width: 100%;
   height: auto;
   border: 1px solid #555555;
+  border-radius: 10px;
 }
 .dash-card .head {
   width: 100%;
@@ -517,6 +518,7 @@ a.login-submit-button:hover {
   max-height: 80px;
   background-color: var(--col-prim-2);
   color: var(--col-ter);
+  border-radius: 10px 10px 0 0;
   border-bottom: 1px solid #555555;
 }
 .dash-card .body {
@@ -524,6 +526,7 @@ a.login-submit-button:hover {
   max-height: 300px;
   background-color: var(--col-grey);
   overflow-y: auto;
+  border-radius:0 0 10px 10px;
 }
 
 .tab-pane {
@@ -954,5 +957,11 @@ input[type = 'submit'].form-control, button[type = 'submit'].btn {
   /* Overriding Bootstrap */
   .container {
     width: 90%;
+  }
+}
+
+@media print {
+  .btn {
+    display: none;
   }
 }

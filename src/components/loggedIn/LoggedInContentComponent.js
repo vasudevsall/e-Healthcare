@@ -149,6 +149,14 @@ class DashboardContent extends Component {
                                         </NavItem>
                                         <NavItem>
                                             <NavLink
+                                                className={classnames({ active: this.state.activeTab === '3' })}
+                                                onClick={() => this.toggle('3')}
+                                            >
+                                                Online Consultation
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink
                                                 className={classnames({ active: this.state.activeTab === '4' })}
                                                 onClick={() => this.toggle('4')}
                                             >
@@ -208,6 +216,29 @@ class DashboardContent extends Component {
                                                     <div className='col-6'>
                                                         <Link to={`${this.props.url}/pharmacy/search`}>
                                                             <span className='fa fa-search fa-lg'></span> Search Medicine
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </TabPane>
+                                        <TabPane tabId="3">
+                                            <div className='container-fluid'>
+                                                <div className= 'row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/consult/new`}>
+                                                            <span className='fa fa-stethoscope fa-lg'/> New Consultation
+                                                        </Link>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/consult/current`}>
+                                                            <span className='fa fa-wifi fa-lg'/> Ongoing Consultation
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                                <div className='row mb-3'>
+                                                    <div className='col-6'>
+                                                        <Link to={`${this.props.url}/consult/history`}>
+                                                            <span className='fa fa-history fa-lg'></span> Past Consultation
                                                         </Link>
                                                     </div>
                                                 </div>

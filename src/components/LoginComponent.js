@@ -30,7 +30,6 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({
-            username: '',
             password: ''
         });
         UserService.loginUser(this.state.username, this.state.password)
