@@ -640,6 +640,7 @@ a.login-submit-button:hover {
 .details-body th{
   max-width: 50px;
   background-color: var(--col-prim);
+  white-space: nowrap;
 }
 
 input[type = 'submit'].form-control, button[type = 'submit'].btn {
@@ -1096,6 +1097,13 @@ input[type = 'submit'].form-control, button[type = 'submit'].btn {
   #content {
     padding: 30px 15px;
   }
+
+  .details-body th{
+    max-width: fit-content;
+    background-color: var(--col-prim);
+    white-space: nowrap;
+  }
+
 
   /* Overriding Bootstrap */
   .container {
