@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import UserService from '../services/UserService';
 import {Loader} from "./LoaderComponent";
-import LoggedInContentComponent from "./loggedIn/LoggedInContentComponent";
 
 class Login extends Component {
 
