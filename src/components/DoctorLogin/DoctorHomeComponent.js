@@ -1,19 +1,22 @@
-import React, {Component} from 'react';
-import {Switch, Route, Redirect, useRouteMatch, withRouter} from "react-router";
+import React, {Component, Suspense, lazy} from 'react';
+import {Switch, Route, Redirect, useRouteMatch, withRouter} from "react-router-dom";
+import {Loader} from "../LoaderComponent";
+import ErrorBoundary from "../ErrorBoundary";
 import Header from '../loggedIn/LoginHeaderComponent';
 import UserService from "../../services/UserService";
 import DoctorSidebar from "./DoctorSidebarComponent";
-import DoctorContent from "./DoctorContent";
-import DoctorDetails from "./User/Details";
-import UpdateInfo from "../loggedIn/User/UpdateInfo";
-import UpdatePassword from "../loggedIn/User/UserPassword";
-import AppointmentHistory from "./Appointments/AppointmentHistory";
-import UpcomingAppointments from "./Appointments/UpcomingAppointments";
-import MySchedule from "./Schedule/MySchedule";
-import UpdateSchedule from "./Schedule/UpdateSchedule";
-import PatientDetails from "./Patient/PatientDetails";
-import PreviousOnline from "../loggedIn/Online Consultation/PreviousOnline";
-import Chat from "../loggedIn/Online Consultation/OnlineChat";
+
+const DoctorContent = lazy(() => import("./DoctorContent"));
+const DoctorDetails = lazy(() => import("./User/Details"));
+const UpdateInfo = lazy(() => import("../loggedIn/User/UpdateInfo"));
+const UpdatePassword = lazy(() => import("../loggedIn/User/UserPassword"));
+const AppointmentHistory = lazy(() => import("./Appointments/AppointmentHistory"));
+const UpcomingAppointments = lazy(() => import("./Appointments/UpcomingAppointments"));
+const MySchedule = lazy(() => import("./Schedule/MySchedule"));
+const UpdateSchedule = lazy(() => import("./Schedule/UpdateSchedule"));
+const PatientDetails = lazy(() => import("./Patient/PatientDetails"));
+const PreviousOnline = lazy(() => import("../loggedIn/Online Consultation/PreviousOnline"));
+const Chat = lazy(() => import("../loggedIn/Online Consultation/OnlineChat"));
 
 class DoctorDashboard extends Component {
 
@@ -74,45 +77,49 @@ class DoctorDashboard extends Component {
                     <DoctorSidebar userInfo={this.state} url={this.props.url} />
 
                     <div id="content">
-                        <Switch>
-                            <Route exact path={`${this.props.path}`} component={() =>
-                                <DoctorContent userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/user/details`} component={() =>
-                                <DoctorDetails userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/user/update`} component={() =>
-                                <UpdateInfo userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/user/password`} component={() =>
-                                <UpdatePassword userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/appointment/history`} component={() =>
-                                <AppointmentHistory userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/appointment/upcoming`} component={() =>
-                                <UpcomingAppointments userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/schedule`} component={() =>
-                                <MySchedule userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/schedule/update`} component={() =>
-                                <UpdateSchedule userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/patient/details`} component={() =>
-                                <PatientDetails userInfo = {this.state} url={this.props.url}/>}
-                            />
-                            <Route exact path={`${this.props.path}/consult/history`} component = {() =>
-                                <PreviousOnline url = {this.props.url}  past={true} doctor={true}/>}
-                            />
-                            <Route exact path={`${this.props.path}/consult/current`} component = {() =>
-                                <PreviousOnline url = {this.props.url} past={false} doctor={true}/>}
-                            />
-                            <Route path={`${this.props.path}/consult/chat/:consultId`} component={() =>
-                                <Chat url={this.props.url}/>}
-                            />
-                            <Redirect to={`${this.props.path}`}/>
-                        </Switch>
+                        <ErrorBoundary>
+                            <Suspense fallback={<Loader/>}>
+                                <Switch>
+                                    <Route exact path={`${this.props.path}`} component={() =>
+                                        <DoctorContent userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/user/details`} component={() =>
+                                        <DoctorDetails userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/user/update`} component={() =>
+                                        <UpdateInfo userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/user/password`} component={() =>
+                                        <UpdatePassword userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/appointment/history`} component={() =>
+                                        <AppointmentHistory userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/appointment/upcoming`} component={() =>
+                                        <UpcomingAppointments userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/schedule`} component={() =>
+                                        <MySchedule userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/schedule/update`} component={() =>
+                                        <UpdateSchedule userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/patient/details`} component={() =>
+                                        <PatientDetails userInfo = {this.state} url={this.props.url}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/consult/history`} component = {() =>
+                                        <PreviousOnline url = {this.props.url}  past={true} doctor={true}/>}
+                                    />
+                                    <Route exact path={`${this.props.path}/consult/current`} component = {() =>
+                                        <PreviousOnline url = {this.props.url} past={false} doctor={true}/>}
+                                    />
+                                    <Route path={`${this.props.path}/consult/chat/:consultId`} component={() =>
+                                        <Chat url={this.props.url}/>}
+                                    />
+                                    <Redirect to={`${this.props.path}`}/>
+                                </Switch>
+                            </Suspense>
+                        </ErrorBoundary>
                     </div>
                 </div>
             </>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import UserService from '../services/UserService';
+import {Loader} from "./LoaderComponent";
+import LoggedInContentComponent from "./loggedIn/LoggedInContentComponent";
 
 class Login extends Component {
 
@@ -10,7 +12,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            errMess: ''
+            errMess: '',
+            load: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,7 +33,8 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({
-            password: ''
+            password: '',
+            load: true
         });
         UserService.loginUser(this.state.username, this.state.password)
             .then((resp) => {
@@ -55,13 +59,19 @@ class Login extends Component {
                 }
             }).catch((err) => {
                 this.setState({
-                    errMess: err.response.data.Error
+                    errMess: err.response.data.Error,
+                    load: false
                 });
             });
         
     }
 
     render() {
+        if(this.state.load) {
+            return (
+                <Loader/>
+            );
+        }
         return(
             <>
                 <div className="login-back full-back"

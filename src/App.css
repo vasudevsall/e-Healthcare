@@ -499,6 +499,7 @@ a.login-submit-button:hover {
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
   width: 100%;
   padding: 30px 50px;
+  position: relative;
 }
 
 #content h4, #content h6 {
@@ -876,6 +877,103 @@ input[type = 'submit'].form-control, button[type = 'submit'].btn {
 .full-flex-span span {
   font-size: 14px;
 }
+
+/* Error Page */
+.error-img {
+  height: 200px;
+  width: auto;
+}
+
+.error-mess-div {
+  margin-top: 20px;
+}
+
+.error-mess {
+  font-size: 18px;
+  color: var(--col-prim);
+}
+.error-mess button {
+  outline: none;
+  border: none;
+  color: var(--col-prim);
+  font-weight: bold;
+}
+
+/* Loader */
+.loader-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-container {
+  width: 100px;
+  height:100px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: row;
+  transform: rotate(45deg);
+
+}
+
+.center {
+  width:8px;
+  height:8px;
+  background-color: #489fb5;
+  border-radius:50%;
+}
+
+.inner, .outer {
+  position: absolute;
+  display:grid;
+  gap:4px;
+  grid-template-columns: 1fr 1fr;
+  align-content: space-around;
+  justify-content: space-between;
+
+  animation: anim_inner 2000ms ease-in-out infinite;
+}
+
+.inner__item, .outer__item {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background-color: #82c8cc;
+}
+
+.outer {
+  gap:16px;
+  animation: anim_outer 2000ms ease-in-out 200ms infinite;
+}
+
+.outer__item {
+  width:10px;
+  height:10px;
+  background-color: #16697a;
+}
+
+@keyframes anim_outer {
+  from {transform:rotate(0deg)}
+  30% {transform:rotate(0deg)}
+  to {transform:rotate(360deg)}
+}
+@keyframes anim_inner {
+  from {transform:rotate(0deg)}
+  30% {transform:rotate(0deg)}
+  to {transform:rotate(360deg)}
+}
+
+@keyframes blink {50% { color: transparent }}
+.loading__dot { animation: 2s blink infinite }
+.loading__dot:nth-child(2) { animation-delay: 250ms }
+.loading__dot:nth-child(3) { animation-delay: 500ms }
 
 /* Media Queries */
 @media (max-width: 991.98px) {
