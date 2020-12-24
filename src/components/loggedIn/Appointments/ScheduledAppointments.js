@@ -129,6 +129,10 @@ class ScheduledAppointment extends Component {
                         </tbody>
                     </Table>
                 );
+            } else {
+                return(<div className='full-flex-span'>
+                    <label className={'font-weight-bold'}>No Appointments Scheduled</label>
+                </div>);
             }
         }
     }

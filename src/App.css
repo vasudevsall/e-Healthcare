@@ -529,6 +529,22 @@ a.login-submit-button:hover {
   border-radius:0 0 10px 10px;
 }
 
+.dash-card .nav-tabs .nav-link {
+  background-color: var(--col-prim-2);
+  color: var(--col-grey)!important;
+  border-radius: 0;
+}
+.dash-card .nav-tabs .nav-link.active {
+  background-color: var(--col-grey);
+  color: var(--col-prim-2)!important;
+  border: none;
+}
+.dash-card .nav-tabs .nav-link:hover {
+  border: none!important;
+  outline: none;
+  box-shadow: none;
+}
+
 .tab-pane {
   padding: 15px;
   font-size: 16px;
@@ -592,8 +608,37 @@ a.login-submit-button:hover {
   border: none;
 }
 
+.modal-header, .modal-header span {
+  background-color: var(--col-prim);
+  color: var(--col-grey);
+}
+
 .modal-body {
   min-height: 200px;
+  background-color: var(--col-grey);
+  border-radius: 0 0 10px 10px;
+}
+
+#content .card-header {
+  background-color: var(--col-prim);
+  color: var(--col-grey);
+}
+#content .card-header:hover {
+  cursor: pointer;
+}
+
+#content .card-body th {
+  /*max-width: 50px;*/
+  color: var(--col-grey);
+  text-align: center;
+}
+#content .card-body td {
+  text-align: center;
+}
+
+.details-body th{
+  max-width: 50px;
+  background-color: var(--col-prim);
 }
 
 input[type = 'submit'].form-control, button[type = 'submit'].btn {

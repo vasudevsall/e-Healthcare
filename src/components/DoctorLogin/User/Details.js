@@ -409,7 +409,7 @@ class DoctorDetails extends Component {
                                 Personal Details
                             </CardHeader>
                             <Collapse isOpen={this.state.toggle === 1}>
-                                <CardBody>
+                                <CardBody className={'details-body'}>
                                     {formDetails}
                                 </CardBody>
                             </Collapse>
