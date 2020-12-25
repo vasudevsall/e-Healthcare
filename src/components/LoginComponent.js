@@ -32,13 +32,15 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({
-            password: '',
             load: true
         });
         UserService.loginUser(this.state.username, this.state.password)
             .then((resp) => {
                 this.setState({
-                    errMess: ''
+                    errMess: '',
+                    password: '',
+                    username: '',
+                    load: false
                 });
                 switch(resp.data.roles) {
                     case "ROLE_USER":
