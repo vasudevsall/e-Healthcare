@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import Footer from "./FooterComponent";
-import {Form, FormGroup, Label, Input, Col, Button} from 'reactstrap';
+import {Form, FormGroup, Label, Input, Col, Button, Alert} from 'reactstrap';
+import FeedbackService from "../services/FeedbackService";
 
 class Contact extends Component {
 
@@ -11,10 +12,13 @@ class Contact extends Component {
             name: '',
             phone: '',
             email: '',
-            feedback: ''
+            feedback: '',
+            success: false,
+            errMess: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleAlert = this.toggleAlert.bind(this);
     }
 
     handleChange(event) {
@@ -27,13 +31,27 @@ class Contact extends Component {
         });
     }
 
+    toggleAlert() {
+        this.setState({
+            success: !this.state.success
+        })
+    }
+
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({
-            name: '',
-            phone: '',
-            email: '',
-            feedback: ''
+        FeedbackService.postFeedback(this.state.name, this.state.phone, this.state.email, this.state.feedback)
+            .then((resp) => {
+                this.setState({
+                    name: '',
+                    phone: '',
+                    email: '',
+                    feedback: '',
+                    success: true
+                })
+            }).catch((err) => {
+                this.setState({
+                    errMess: ''
+                })
         })
     }
 
@@ -65,6 +83,13 @@ class Contact extends Component {
                                 <h3 style={{textDecoration: 'underline'}} className={'mb-4'}>
                                     Send Us Your Feedback
                                 </h3>
+                            </div>
+                        </div>
+                        <div className={'row'}>
+                            <div className={'col-12'}>
+                                <Alert color={'success'} isOpen={this.state.success} toggle={this.toggleAlert}>
+                                    Thank You for submitting your feedback!
+                                </Alert>
                             </div>
                         </div>
                         <Form onSubmit={this.handleSubmit}>
